@@ -8,7 +8,7 @@ Ce projet est un mini-site d'information sur la guerre en Iran, inspiré du site
 - CSS3 : pour la mise en page et le design du site
 - JavaScript : pour les interactions et les fonctionnalités dynamiques du site
 - PHP : pour la gestion des données et l'affichage dynamique du contenu
-- PostgreSQL : pour la gestion de la base de données contenant les articles, les images et les vidéos
+- MySQL : pour la gestion de la base de données contenant les articles, les images et les vidéos
 - Docker : pour la conteneurisation de l'application et faciliter le déploiement
 
 ## Fonctionnalités
