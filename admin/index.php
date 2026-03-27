@@ -11,6 +11,7 @@ session_start();
 require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../model/Article.php';
 require_once __DIR__ . '/../model/Diffusion.php';
+require_once __DIR__ . '/../model/Statut.php';
 require_once __DIR__ . '/../model/Category.php';
 
 $database = new Database();
@@ -23,6 +24,7 @@ if (!$pdo) {
 $articleModel = new Article($pdo);
 $diffusionModel = new Diffusion($pdo);
 $categoryModel = new Category($pdo);
+$statutModel = new Statut($pdo);
 
 // Traiter les soumissions de formulaires
 $message = '';
@@ -375,16 +377,16 @@ $categories = $categoryModel->getAll();
                     <td><?php echo $diff['id']; ?></td>
                     <td><?php echo htmlspecialchars(substr($diff['title'], 0, 60)); ?></td>
                     <td>
-                        <span class="status <?php echo $diff['status']; ?>">
-                            <?php echo ucfirst(str_replace('_', ' ', $diff['status'])); ?>
+                        <span class="status <?php echo $diff['status_name']; ?>">
+                            <?php echo ucfirst(str_replace('_', ' ', $diff['status_name'])); ?>
                         </span>
                     </td>
                     <td><?php echo date('d/m/Y H:i', strtotime($diff['created_at'])); ?></td>
                     <td>
                         <select onchange="changeDiffusionStatus(<?php echo $diff['id']; ?>, this.value)" style="width: auto; padding: 5px;">
-                            <option value="en_cours" <?php echo $diff['status'] === 'en_cours' ? 'selected' : ''; ?>>En cours</option>
-                            <option value="fini" <?php echo $diff['status'] === 'fini' ? 'selected' : ''; ?>>Fini</option>
-                            <option value="a_predire" <?php echo $diff['status'] === 'a_predire' ? 'selected' : ''; ?>>À prédire</option>
+                            <option value="en_cours" <?php echo $diff['status_name'] === 'en_cours' ? 'selected' : ''; ?>>En cours</option>
+                            <option value="fini" <?php echo $diff['status_name'] === 'fini' ? 'selected' : ''; ?>>Fini</option>
+                            <option value="a_predire" <?php echo $diff['status_name'] === 'a_predire' ? 'selected' : ''; ?>>À prédire</option>
                         </select>
                     </td>
                 </tr>
@@ -457,9 +459,15 @@ $categories = $categoryModel->getAll();
             <div class="form-group">
                 <label for="diffusion_status">Statut *</label>
                 <select id="diffusion_status" name="status" required>
-                    <option value="en_cours">En cours</option>
-                    <option value="a_predire">À prédire</option>
-                    <option value="fini">Fini</option>
+                    <?php 
+                    $allStatuts = $statutModel->getAll();
+                    foreach ($allStatuts as $statut): 
+                    ?>
+                    <option value="<?php echo htmlspecialchars($statut['name']); ?>" 
+                        <?php echo $statut['name'] === 'en_cours' ? 'selected' : ''; ?>>
+                        <?php echo htmlspecialchars($statut['name']); ?>
+                    </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
 

@@ -17,7 +17,7 @@ include __DIR__ . '/layout/header.php';
   <div class="byline">Par <a href="#"><?php echo htmlspecialchars($article['author'] ?? 'Rédaction'); ?></a></div>
   <div class="article-meta">
     <svg data-feather="clock"></svg>
-    Publié le <?php echo date('d M Y', strtotime($article['published_at'])); ?> à <?php echo date('H:i', strtotime($article['published_at'])); ?> &nbsp;·&nbsp; Mis à jour le <?php echo date('d M Y', strtotime($article['updated_at'])); ?>
+    Publié le <?php echo date('d M Y', strtotime($article['published_at'])); ?> à <?php echo date('H:i', strtotime($article['published_at'])); ?> <span style="color: #999;">(<?php echo getTimeAgo($article['published_at']); ?>)</span> &nbsp;·&nbsp; Mis à jour le <?php echo date('d M Y', strtotime($article['updated_at'])); ?>
   </div>
 
   <div class="article-actions">

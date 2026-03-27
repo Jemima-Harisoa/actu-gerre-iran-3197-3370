@@ -1,22 +1,44 @@
 <?php
 /**
  * Modèle Diffusion (En Direct)
- * États : 'fini', 'en_cours', 'a_predire'
+ * États : 'en_cours' (1), 'fini' (2), 'a_predire' (3)
  */
 class Diffusion {
     private $pdo;
+    
+    // Mapping des statuts nom -> ID
+    const STATUS_MAP = [
+        'en_cours' => 1,
+        'fini' => 2,
+        'a_predire' => 3
+    ];
+    
+    // Mapping inverse ID -> nom
+    const STATUS_REVERSE_MAP = [
+        1 => 'en_cours',
+        2 => 'fini',
+        3 => 'a_predire'
+    ];
     
     public function __construct($pdo) {
         $this->pdo = $pdo;
     }
 
     /**
+     * Obtient l'ID d'un statut par son nom
+     */
+    private function getStatusId($statusName) {
+        return self::STATUS_MAP[$statusName] ?? 1; // Default to 'en_cours'
+    }
+
+    /**
      * Récupère toutes les diffusions actives/en cours
      */
     public function getActive($limit = 10) {
-        $sql = "SELECT * FROM diffusion 
-                WHERE status IN ('en_cours', 'a_predire')
-                ORDER BY created_at DESC 
+        $sql = "SELECT d.*, s.name as status_name FROM diffusion d
+                LEFT JOIN statuts s ON d.status_id = s.id
+                WHERE d.status_id IN (1, 3)
+                ORDER BY d.created_at DESC 
                 LIMIT :limit";
         
         $stmt = $this->pdo->prepare($sql);
@@ -30,8 +52,9 @@ class Diffusion {
      * Récupère toutes les diffusions
      */
     public function getAll($limit = 20) {
-        $sql = "SELECT * FROM diffusion 
-                ORDER BY created_at DESC 
+        $sql = "SELECT d.*, s.name as status_name FROM diffusion d
+                LEFT JOIN statuts s ON d.status_id = s.id
+                ORDER BY d.created_at DESC 
                 LIMIT :limit";
         
         $stmt = $this->pdo->prepare($sql);
@@ -45,7 +68,9 @@ class Diffusion {
      * Récupère une diffusion par ID
      */
     public function getById($id) {
-        $sql = "SELECT * FROM diffusion WHERE id = :id";
+        $sql = "SELECT d.*, s.name as status_name FROM diffusion d
+                LEFT JOIN statuts s ON d.status_id = s.id
+                WHERE d.id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -55,14 +80,23 @@ class Diffusion {
 
     /**
      * Récupère les diffusions par statut
+     * @param mixed $status Nom du statut ('en_cours', 'fini', 'a_predire') ou ID (1, 2, 3)
      */
     public function getByStatus($status) {
-        $sql = "SELECT * FROM diffusion 
-                WHERE status = :status
-                ORDER BY created_at DESC";
+        // Si c'est un string, convertir en ID
+        if (is_string($status)) {
+            $statusId = $this->getStatusId($status);
+        } else {
+            $statusId = (int)$status;
+        }
+        
+        $sql = "SELECT d.*, s.name as status_name FROM diffusion d
+                LEFT JOIN statuts s ON d.status_id = s.id
+                WHERE d.status_id = :status_id
+                ORDER BY d.created_at DESC";
         
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':status_id', $statusId, PDO::PARAM_INT);
         $stmt->execute();
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -71,45 +105,65 @@ class Diffusion {
     /**
      * Ajoute une nouvelle diffusion
      * @param string $title Titre de la diffusion
-     * @param string $status 'en_cours', 'fini', 'a_predire'
+     * @param string $status 'en_cours', 'fini', 'a_predire' (optionnel, défaut: 'en_cours')
      */
     public function create($title, $status = 'en_cours') {
-        $sql = "INSERT INTO diffusion (title, status, created_at, updated_at)
-                VALUES (:title, :status, NOW(), NOW())";
+        $statusId = $this->getStatusId($status);
+        
+        $sql = "INSERT INTO diffusion (title, status_id, created_at, updated_at)
+                VALUES (:title, :status_id, NOW(), NOW())";
         
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':title', $title);
-        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':status_id', $statusId, PDO::PARAM_INT);
         
         return $stmt->execute();
     }
 
     /**
      * Met à jour une diffusion
+     * @param int $id ID de la diffusion
+     * @param array $data Données à mettre à jour (title, status)
      */
     public function update($id, $data) {
-        $sql = "UPDATE diffusion SET 
-                title = :title,
-                status = :status,
-                updated_at = NOW()
-                WHERE id = :id";
+        $statusId = isset($data['status']) ? $this->getStatusId($data['status']) : null;
+        
+        if ($statusId !== null) {
+            $sql = "UPDATE diffusion SET 
+                    title = :title,
+                    status_id = :status_id,
+                    updated_at = NOW()
+                    WHERE id = :id";
+        } else {
+            $sql = "UPDATE diffusion SET 
+                    title = :title,
+                    updated_at = NOW()
+                    WHERE id = :id";
+        }
         
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':title', $data['title']);
-        $stmt->bindParam(':status', $data['status']);
+        
+        if ($statusId !== null) {
+            $stmt->bindParam(':status_id', $statusId, PDO::PARAM_INT);
+        }
         
         return $stmt->execute();
     }
 
     /**
      * Change le statut d'une diffusion
+     * @param int $id ID de la diffusion
+     * @param string $status Nom du statut ou ID
      */
     public function updateStatus($id, $status) {
-        $sql = "UPDATE diffusion SET status = :status, updated_at = NOW() WHERE id = :id";
+        $statusId = is_string($status) ? $this->getStatusId($status) : (int)$status;
+        
+        $sql = "UPDATE diffusion SET status_id = :status_id, updated_at = NOW() WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':status_id', $statusId, PDO::PARAM_INT);
         
         return $stmt->execute();
     }

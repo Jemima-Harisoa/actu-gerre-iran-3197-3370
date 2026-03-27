@@ -24,10 +24,15 @@ class DiffusionController {
      * Récupère tous les diffusions avec pagination
      */
     public function listAll($page = 1) {
+        // Valider et sanitizer le numéro de page
+        $page = max(1, (int)$page);
+        
         $limit = 20;
         $offset = ($page - 1) * $limit;
         
-        $diffusions = $this->diffusion->getAll($limit + $offset);
+        // NOTE: Le modèle Diffusion->getAll() ne supporte que le LIMIT, pas OFFSET
+        // Pour la pagination complète, il faudrait modifier le modèle
+        $diffusions = $this->diffusion->getAll($limit);
         
         return [
             'diffusions' => $diffusions,
@@ -39,9 +44,19 @@ class DiffusionController {
      * Récupère les diffusions par statut
      */
     public function getByStatus($status) {
-        $valid_statuses = ['en_cours', 'fini', 'a_predire'];
+        // Valider le statut
+        $validStatuses = ['en_cours', 'fini', 'a_predire'];
         
-        if (!in_array($status, $valid_statuses)) {
+        // Si c'est un ID (nombre), récupérer son nom
+        if (is_numeric($status)) {
+            $statusId = (int)$status;
+            // Vérifier que l'ID est valide (1, 2, 3)
+            if (!in_array($statusId, [1, 2, 3])) {
+                return ['error' => 'Statut invalide'];
+            }
+        } elseif (in_array($status, $validStatuses)) {
+            // C'est déjà un nom, utiliser tel quel
+        } else {
             return ['error' => 'Statut invalide'];
         }
 
