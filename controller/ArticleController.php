@@ -3,6 +3,8 @@
  * Contrôleur Article
  */
 require_once __DIR__ . '/../model/Article.php';
+require_once __DIR__ . '/../model/Category.php';
+require_once __DIR__ . '/../model/ArticleImage.php';
 
 class ArticleController {
     private $article;
@@ -48,7 +50,6 @@ class ArticleController {
         }
 
         // Récupérer les images de l'article
-        require_once __DIR__ . '/../model/ArticleImage.php';
         $imageModel = new ArticleImage($this->pdo);
         $images = $imageModel->getByArticle($article_id);
 
