@@ -20,6 +20,7 @@ services:
       MYSQL_DATABASE: iran_actu
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d
     restart: unless-stopped
 
 volumes:
