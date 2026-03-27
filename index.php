@@ -6,6 +6,17 @@
 
 require_once __DIR__ . '/bootstrap.php';
 
+// Initialiser les données globales pour toutes les vues
+// Catégories pour la navigation rubrique (utilisée dans header.php)
+$categories = $categoryModel->getAll() ?? [];
+
+// Titre de page par défaut (peut être overridé dans chaque cas)
+$pageTitle = 'Le Monde - Actualités sur l\'Iran';
+
+// Récupérer les diffusions actives pour le header (ticker)
+$diffusionData = $diffusionController->getActive();
+$diffusions = $diffusionData['diffusions'] ?? [];
+
 // Déterminer la page à afficher
 $page = $_GET['page'] ?? 'home';
 
@@ -42,6 +53,9 @@ try {
                 $heroCaption = $article['description'] ?? '';
             }
             
+            // Définir le titre de la page
+            $pageTitle = htmlspecialchars($article['title']) . ' - Le Monde';
+            
             include __DIR__ . '/views/article.php';
             break;
 
@@ -61,6 +75,9 @@ try {
             
             $articles = $data['articles'];
             $category = $data['category'];
+            
+            // Définir le titre de la page
+            $pageTitle = htmlspecialchars($category['name']) . ' - Le Monde';
             
             include __DIR__ . '/views/category.php';
             break;

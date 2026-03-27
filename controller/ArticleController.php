@@ -21,6 +21,9 @@ class ArticleController {
      * Affiche la liste des articles par catégorie
      */
     public function listByCategory($category_slug, $page = 1) {
+        // Valider et sanitizer le numéro de page
+        $page = max(1, (int)$page);
+        
         $category = $this->category->getBySlug($category_slug);
         
         if (!$category) {
@@ -79,6 +82,9 @@ class ArticleController {
      * Affiche tous les articles
      */
     public function index($page = 1) {
+        // Valider et sanitizer le numéro de page
+        $page = max(1, (int)$page);
+        
         $limit = 9;
         $offset = ($page - 1) * $limit;
         

@@ -20,6 +20,9 @@ include __DIR__ . '/layout/header.php';
           <div class="ckicker"><?php echo htmlspecialchars($article['category_name'] ?? 'Actualités'); ?></div>
           <div class="card-title"><?php echo htmlspecialchars($article['title']); ?></div>
           <div class="card-desc"><?php echo htmlspecialchars(substr($article['description'] ?? '', 0, 150) . '...'); ?></div>
+          <div style="font-size: 12px; color: #999; margin-top: 12px; margin-bottom: 12px;">
+            <?php echo getTimeAgo($article['published_at']); ?> · <?php echo date('d M Y', strtotime($article['published_at'])); ?>
+          </div>
           <a href="?page=article&id=<?php echo $article['id']; ?>" style="margin-top: 12px; display: block; color: #0057a8; text-decoration: none; font-weight: 600;">Lire plus →</a>
         </div>
       <?php endforeach; ?>

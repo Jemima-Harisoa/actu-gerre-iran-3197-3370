@@ -39,16 +39,27 @@ CREATE TABLE IF NOT EXISTS articles (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================
+-- Table Statuts (Pour la diffusion en direct)
+-- ============================================
+CREATE TABLE IF NOT EXISTS statuts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    description VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================
 -- Table Diffusion (En Direct)
--- Statuts: 'en_cours', 'fini', 'a_predire'
+-- Référence la table statuts
 -- ============================================
 CREATE TABLE IF NOT EXISTS diffusion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(500) NOT NULL,
-    status ENUM('en_cours', 'fini', 'a_predire') DEFAULT 'en_cours',
+    status_id INT NOT NULL DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    INDEX idx_status (status),
+    FOREIGN KEY (status_id) REFERENCES statuts(id) ON DELETE RESTRICT,
+    INDEX idx_status (status_id),
     INDEX idx_created (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -130,10 +141,18 @@ INSERT INTO article_images (article_id, image_url, caption, position) VALUES
 (2, 'https://via.placeholder.com/760x430?text=Politique+2', 'Débat politique', 1);
 
 -- ============================================
+-- Insérer les statuts par défaut
+-- ============================================
+INSERT INTO statuts (name, description) VALUES
+('en_cours', 'Actualité en cours - En direct'),
+('fini', 'Actualité terminée - Archived'),
+('a_predire', 'Actualité à venir - À prédire');
+
+-- ============================================
 -- Insérer des diffusions de test
 -- ============================================
-INSERT INTO diffusion (title, status) VALUES
-('Guerre en Iran : nouvelles frappes sur Téhéran dans la nuit du vendredi au samedi', 'fini'),
-('Moyen-Orient : Israël annonce une trêve humanitaire de 8 heures à Gaza', 'en_cours'),
-('Ukraine : la France va livrer 12 chasseurs Mirage 2000 supplémentaires à Kiev', 'a_predire'),
-('Économie : la BCE maintient ses taux directeurs inchangés pour le troisième trimestre', 'en_cours');
+INSERT INTO diffusion (title, status_id) VALUES
+('Guerre en Iran : nouvelles frappes sur Téhéran dans la nuit du vendredi au samedi', 2),
+('Moyen-Orient : Israël annonce une trêve humanitaire de 8 heures à Gaza', 1),
+('Ukraine : la France va livrer 12 chasseurs Mirage 2000 supplémentaires à Kiev', 3),
+('Économie : la BCE maintient ses taux directeurs inchangés pour le troisième trimestre', 1);
