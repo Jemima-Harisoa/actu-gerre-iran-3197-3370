@@ -17,7 +17,7 @@ include __DIR__ . '/layout/header.php';
   <div class="byline">Par <a href="#"><?php echo htmlspecialchars($article['author'] ?? 'Rédaction'); ?></a></div>
   <div class="article-meta">
     <svg data-feather="clock"></svg>
-    Publié le <?php echo date('d M Y', strtotime($article['published_at'])); ?> à <?php echo date('H:i', strtotime($article['published_at'])); ?> <span style="color: #999;">(<?php echo getTimeAgo($article['published_at']); ?>)</span> &nbsp;·&nbsp; Mis à jour le <?php echo date('d M Y', strtotime($article['updated_at'])); ?>
+    Publié le <?php echo date('d M Y', strtotime($article['published_at'])); ?> à <?php echo date('H:i', strtotime($article['published_at'])); ?> <span class="text-muted">(<?php echo getTimeAgo($article['published_at']); ?>)</span> &nbsp;·&nbsp; Mis à jour le <?php echo date('d M Y', strtotime($article['updated_at'])); ?>
   </div>
 
   <div class="article-actions">
@@ -40,10 +40,10 @@ include __DIR__ . '/layout/header.php';
 
   <!-- Galerie d'images supplémentaires -->
   <?php if (count($images) > 1): ?>
-  <div style="margin: 30px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+  <div class="mt-30" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
     <?php foreach (array_slice($images, 1) as $img): ?>
-    <div style="border-radius: 4px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <img src="<?php echo htmlspecialchars($img['image_url']); ?>" alt="<?php echo htmlspecialchars($img['caption'] ?? ''); ?>" style="width: 100%; height: 250px; object-fit: cover;">
+    <div class="img-rounded">
+      <img src="<?php echo htmlspecialchars($img['image_url']); ?>" alt="<?php echo htmlspecialchars($img['caption'] ?? ''); ?>" class="img-cover">
       <?php if (!empty($img['caption'])): ?>
       <p style="padding: 12px; font-size: 13px; line-height: 1.5; background: #f5f5f5;"><?php echo htmlspecialchars($img['caption']); ?></p>
       <?php endif; ?>
@@ -62,26 +62,26 @@ include __DIR__ . '/layout/header.php';
 
 <!-- AUTRES ARTICLES (SUGGESTIONS) -->
 <?php if (!empty($otherArticles)): ?>
-<section style="background: #f8f9fa; padding: 40px 20px; margin-top: 40px;">
-  <div style="max-width: 1000px; margin: 0 auto;">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 30px; font-weight: 700;">À lire aussi</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+<section class="section-hero">
+  <div class="container">
+    <h2 class="section-title">À lire aussi</h2>
+    <div class="cards-grid-featured">
       <?php foreach ($otherArticles as $suggested): ?>
-      <div style="background: white; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-        <div style="overflow: hidden; height: 200px; background: #e0e0e0;">
-          <img src="<?php echo htmlspecialchars($suggested['image_url'] ?? ''); ?>" alt="<?php echo htmlspecialchars($suggested['title']); ?>" style="width: 100%; height: 100%; object-fit: cover;">
+      <div class="card-featured">
+        <div class="img-bg">
+          <img src="<?php echo htmlspecialchars($suggested['image_url'] ?? ''); ?>" alt="<?php echo htmlspecialchars($suggested['title']); ?>" class="img-cover">
         </div>
-        <div style="padding: 16px;">
-          <div style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+        <div class="card-featured-content">
+          <div class="card-featured-kicker">
             <?php echo htmlspecialchars($suggested['category_name'] ?? 'Actualités'); ?>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 10px; line-height: 1.3;">
+          <h3 class="card-featured-title">
             <?php echo htmlspecialchars($suggested['title']); ?>
           </h3>
-          <p style="font-size: 14px; color: #666; line-height: 1.5; margin-bottom: 12px;">
+          <p class="card-featured-desc">
             <?php echo htmlspecialchars(substr($suggested['description'] ?? '', 0, 100)) . '...'; ?>
           </p>
-          <a href="?page=article&id=<?php echo $suggested['id']; ?>" style="color: #0057a8; text-decoration: none; font-weight: 600; font-size: 14px;">
+          <a href="?page=article&id=<?php echo $suggested['id']; ?>" class="link-primary link-block-sm">
             Lire l'article →
           </a>
         </div>
