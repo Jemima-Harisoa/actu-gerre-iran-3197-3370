@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  web:
+    image: php:8.3-apache
+    container_name: apache
+    ports: 
+      - "80:80"
+    volumes:
+      - ./:/var/www/html/
+    restart: unless-stopped
+  
+  db:
+    image: mysql:9.1
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: iran_actu
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
