@@ -13,6 +13,9 @@ $categories = $categoryModel->getAll() ?? [];
 // Titre de page par défaut (peut être overridé dans chaque cas)
 $pageTitle = 'Le Monde - Actualités sur l\'Iran';
 
+// Slug de la catégorie active (pour header.php)
+$activeSlug = null;
+
 // Récupérer les diffusions actives pour le header (ticker)
 $diffusionData = $diffusionController->getActive();
 $diffusions = $diffusionData['diffusions'] ?? [];
@@ -76,6 +79,9 @@ try {
             $articles = $data['articles'];
             $category = $data['category'];
             
+            // Marquer cette catégorie comme active dans la navigation
+            $activeSlug = $categorySlug;
+            
             // Définir le titre de la page
             $pageTitle = htmlspecialchars($category['name']) . ' - Le Monde';
             
@@ -86,6 +92,9 @@ try {
         default:
             $data = $articleController->index();
             $articles = $data['articles'];
+            
+            // Marquer "À la une" comme active sur l'accueil
+            $activeSlug = 'a-la-une';
             
             include __DIR__ . '/views/home.php';
             break;

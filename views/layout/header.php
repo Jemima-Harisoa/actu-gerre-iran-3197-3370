@@ -52,7 +52,7 @@
 <nav class="rubrique-nav">
   <ul>
     <?php foreach ($categories as $cat): ?>
-      <li class="<?php echo $cat['slug'] === 'a-la-une' ? 'active' : ''; ?>">
+      <li class="<?php echo isset($activeSlug) && $cat['slug'] === $activeSlug ? 'active' : ''; ?>">
         <a href="?page=category&slug=<?php echo urlencode($cat['slug']); ?>">
           <?php echo htmlspecialchars($cat['name']); ?>
         </a>
