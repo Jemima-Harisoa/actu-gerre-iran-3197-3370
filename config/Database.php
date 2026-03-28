@@ -12,11 +12,11 @@ class Database {
     private $pdo;
     
     public function __construct() {
-        $this->host     = $_ENV['DB_HOST']     ?? 'db';
-        $this->db_name  = $_ENV['DB_NAME']      ?? 'iran_actu';
-        $this->user     = $_ENV['DB_USER']      ?? 'root';
-        $this->password = $_ENV['DB_PASSWORD']  ?? '';
-        $this->charset  = $_ENV['DB_CHARSET']   ?? 'utf8mb4';
+        $this->host     = getenv('DB_HOST')     ?? 'db';
+        $this->db_name  = getenv('DB_NAME')      ?? 'iran_actu';
+        $this->user     = getenv('DB_USER')      ?? 'root';
+        $this->password = getenv('DB_PASSWORD')  ?? '';
+        $this->charset  = getenv('DB_CHARSET')   ?? 'utf8mb4';
     }
 
     public function connect() {

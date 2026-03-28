@@ -12,8 +12,8 @@ services:
     environment:
       DB_HOST: db
       DB_NAME: ${DB_NAME:-iran_actu}
-      DB_USER: ${DB_USER:-dev}
-      DB_PASSWORD: ${DB_PASSWORD:-dev}
+      DB_USER: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-}
       DB_CHARSET: ${DB_CHARSET:-utf8mb4}
   db:
     image: mysql:9.1
