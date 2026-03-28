@@ -1,25 +1,25 @@
 # Docker 
 ## Installation de Docker
-    - [ ] Docker compose environnement developpement :
-        - [ ] image de base :
-            - [ ] mysql 9.1 pour la base de données
-            - [ ] apache 2.4 pour le serveur web
+    - [X] Docker compose environnement developpement :
+        - [X] image de base :
+            - [X] mysql 9.1 pour la base de données
+            - [X] apache 2.4 pour le serveur web
         - [ ] hot reload : mis ajour de l'environnement de développement pour permettre le rechargement automatique du code sans redémarrer les conteneurs. 
-        - [ ] docker-compose.dev.yml : rechargement automatique du code sans redémarrer les conteneurs 
+        - [X] docker-compose.dev.yml : rechargement automatique du code sans redémarrer les conteneurs 
 
     - [ ] Script de lancement :
-        - [ ] start.sh : lancement de l'environnement de développement
+        - [X] start.sh : lancement de l'environnement de développement
         - [ ] stop.sh : arret de l'environnement de développement 
         - [ ] script d'execution sql sans recharger les conteneurs => integrer les script de test au fur et a mesur et valider les changements dans la base de données sans redémarrer les conteneurs.
 
 # Base de données MysQL
-    - [ ] Conception de la base de données :
-        - [ ] tables : articles, categories, images, videos, utilisateurs
-        - [ ] relations : un article peut appartenir à une catégorie, un article peut avoir plusieurs images et vidéos associées, un utilisateur peut créer plusieurs articles.
-    - [ ] Script de création de la base de données :
-        - [ ] create_database.sql : script SQL pour créer la base de données et les tables nécessaires
-    - [ ] Script d'insertion de données initial :
-        - [ ] insert_data.sql : script SQL pour insérer des données d'exemple dans la base de données pour les tests et le développement.
+    - [X] Conception de la base de données :
+        - [X] tables : articles, categories, images, videos, utilisateurs
+        - [X] relations : un article peut appartenir à une catégorie, un article peut avoir plusieurs images et vidéos associées, un utilisateur peut créer plusieurs articles.
+    - [X] Script de création de la base de données :
+        - [X] schema.sql : script SQL pour créer la base de données et les tables nécessaires
+    - [] Script d'autentification :
+        - [ ] auth.sql : script SQL pour gérer les utilisateurs et les sessions d'authentification
 
 # Front Office
 - [ ] Affichage des articles avec images et vidéos :
