@@ -6,9 +6,18 @@ class Database {
     private $host = 'localhost';
     private $db_name = 'iran_actu';
     private $user = 'root';
+    private $root_password = '';
     private $password = '';
     private $charset = 'utf8mb4';
     private $pdo;
+    
+    public function __construct() {
+        $this->host     = getenv('DB_HOST')     ?? 'db';
+        $this->db_name  = getenv('DB_NAME')      ?? 'iran_actu';
+        $this->user     = getenv('DB_USER')      ?? 'root';
+        $this->password = getenv('DB_PASSWORD')  ?? '';
+        $this->charset  = getenv('DB_CHARSET')   ?? 'utf8mb4';
+    }
 
     public function connect() {
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name . ';charset=' . $this->charset;
