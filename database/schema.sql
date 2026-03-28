@@ -3,8 +3,10 @@
 -- ============================================
 
 -- Créer la base de données
-CREATE DATABASE IF NOT EXISTS iran_actu;
+CREATE DATABASE IF NOT EXISTS iran_actu CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE iran_actu;
+SET CHARACTER SET utf8mb4;
+SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- ============================================
 -- Table Categories (Rubriques)
@@ -82,7 +84,6 @@ CREATE TABLE IF NOT EXISTS article_images (
 -- Insérer les catégories par défaut
 -- ============================================
 INSERT INTO categories (name, slug) VALUES
-('À la une', 'a-la-une'),
 ('International', 'international'),
 ('Politique', 'politique'),
 ('Société', 'societe'),
@@ -100,7 +101,7 @@ INSERT INTO categories (name, slug) VALUES
 -- ============================================
 INSERT INTO articles (category_id, title, description, content, author, image_url, is_featured, published_at) VALUES
 (
-    2,
+    1,
     'Guerre en Iran : les suites incertaines de la domination militaire incontestable des Américains et des Israéliens',
     'Une semaine après le début de l\'opération « Fureur épique », Israël et les États-Unis peuvent se prévaloir de nombreux succès, sans pertes majeures.',
     '<p><strong>Une semaine après le début de l\'opération « Fureur épique »</strong>, Israël et les États-Unis peuvent se prévaloir de nombreux succès, sans pertes majeures. Mais ils n\'ont toujours pas établi d\'objectif clair, alors que la situation demeure chaotique dans la région.</p><p>Ce devait être le quartier général de la riposte iranienne, en cas d\'attaque d\'Israël ou des États-Unis. Un bunker au cœur de Téhéran, enterré plusieurs dizaines de mètres sous terre. Il a été bombardé en ouverture de la guerre, le matin du samedi 18 février, alors des frappes tuaient Ali Khamenei, le Guide suprême, et de nombreux hauts responsables du régime.</p>',
@@ -110,7 +111,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
     '2025-05-27 18:42:00'
 ),
 (
-    3,
+    2,
     'La vie politique en Iran : enjeux et transformations après la crise',
     'Une semaine après le début de l\'opération « Fureur épique », Israël et les États-Unis peuvent se prévaloir de nombreux succès, sans pertes majeures.',
     '<p><strong>Une semaine après le début de l\'opération « Fureur épique »</strong>, Israël et les États-Unis peuvent se prévaloir de nombreux succès, sans pertes majeures. Mais ils n\'ont toujours pas établi d\'objectif clair, alors que la situation demeure chaotique dans la région.</p><p>Ce devait être le quartier général de la riposte iranienne, en cas d\'attaque d\'Israël ou des États-Unis. Un bunker au cœur de Téhéran, enterré plusieurs dizaines de mètres sous terre. Il a été bombardé en ouverture de la guerre, le matin du samedi 18 février, alors des frappes tuaient Ali Khamenei, le Guide suprême, et de nombreux hauts responsables du régime.</p>',
@@ -120,7 +121,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
     '2025-05-26 15:30:00'
 ),
 (
-    2,
+    3,
     'Les États-Unis bombardent les milices pro-iraniennes en Irak et en Syrie',
     'Une nouvelle vague de frappes de grande ampleur sur les positions pro-iraniennes.',
     '<p>Les États-Unis bombardent les milices pro-iraniennes en Irak et en Syrie après une série de missiles vers d\'Iran...</p>',
@@ -133,12 +134,12 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 -- ============================================
 -- Insérer des images multiples pour les articles
 -- ============================================
-INSERT INTO article_images (article_id, image_url, caption, position) VALUES
-(1, 'https://via.placeholder.com/760x430?text=Teheran+1', 'Vue de Téhéran', 0),
-(1, 'https://via.placeholder.com/760x430?text=Teheran+2', 'Centre ville', 1),
-(1, 'https://via.placeholder.com/760x430?text=Teheran+3', 'Monument historique', 2),
-(2, 'https://via.placeholder.com/760x430?text=Politique+1', 'Parlement iranien', 0),
-(2, 'https://via.placeholder.com/760x430?text=Politique+2', 'Débat politique', 1);
+INSERT INTO article_images (article_id, caption) VALUES
+(1,'Vue de Téhéran - Guerre Iran'),
+(1,'Centre ville - Guerre Iran'),
+(1,'Monument historique - Guerre Iran'),
+(2, 'Parlement iranien - Guerre Iran'),
+(2, 'Débat politique - Guerre Iran');
 
 -- ============================================
 -- Insérer les statuts par défaut

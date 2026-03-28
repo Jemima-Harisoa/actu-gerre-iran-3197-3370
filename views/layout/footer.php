@@ -54,6 +54,12 @@
   </div>
 </footer>
 
-<script>feather.replace();</script>
+<script>
+if (typeof feather !== 'undefined' && feather.replace) {
+    feather.replace();
+} else {
+    console.error('Feather icons library failed to load');
+}
+</script>
 </body>
 </html>

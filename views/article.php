@@ -31,7 +31,7 @@ include __DIR__ . '/layout/header.php';
   </div>
 
   <!-- Hero -->
-  <div class="hero" style="background-image: url('<?php echo htmlspecialchars($heroImage); ?>'); background-size: cover; background-position: center;">
+  <div class="hero" style="background-image: url('<?php echo htmlspecialchars(getImageUrl($heroImage)); ?>'); background-size: cover; background-position: center;">
     <div class="hero-caption-text"><?php echo htmlspecialchars($article['title']); ?> | Article</div>
   </div>
   <div class="caption">
@@ -43,7 +43,7 @@ include __DIR__ . '/layout/header.php';
   <div class="mt-30" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
     <?php foreach (array_slice($images, 1) as $img): ?>
     <div class="img-rounded">
-      <img src="<?php echo htmlspecialchars($img['image_url']); ?>" alt="<?php echo htmlspecialchars($img['caption'] ?? ''); ?>" class="img-cover">
+      <img src="<?php echo htmlspecialchars(getImageUrl($img['image_url'])); ?>" alt="<?php echo htmlspecialchars($img['caption'] ?? ''); ?>" class="img-cover">
       <?php if (!empty($img['caption'])): ?>
       <p style="padding: 12px; font-size: 13px; line-height: 1.5; background: #f5f5f5;"><?php echo htmlspecialchars($img['caption']); ?></p>
       <?php endif; ?>
@@ -69,21 +69,19 @@ include __DIR__ . '/layout/header.php';
       <?php foreach ($otherArticles as $suggested): ?>
       <div class="card-featured">
         <div class="img-bg">
-          <img src="<?php echo htmlspecialchars($suggested['image_url'] ?? ''); ?>" alt="<?php echo htmlspecialchars($suggested['title']); ?>" class="img-cover">
+          <img src="<?php echo htmlspecialchars(getImageUrl($suggested['image_url'] ?? '')); ?>" alt="<?php echo htmlspecialchars($suggested['title']); ?>" class="img-cover">
         </div>
         <div class="card-featured-content">
           <div class="card-featured-kicker">
             <?php echo htmlspecialchars($suggested['category_name'] ?? 'Actualités'); ?>
           </div>
           <h3 class="card-featured-title">
-            <?php echo htmlspecialchars($suggested['title']); ?>
+            <a href="<?php echo BASE_URL; ?>/<?php echo $suggested['id']; ?>/article/<?php echo generateSlug($suggested['title']); ?>"><?php echo htmlspecialchars($suggested['title']); ?></a>
           </h3>
           <p class="card-featured-desc">
             <?php echo htmlspecialchars(substr($suggested['description'] ?? '', 0, 100)) . '...'; ?>
           </p>
-          <a href="?page=article&id=<?php echo $suggested['id']; ?>" class="link-primary link-block-sm">
-            Lire l'article →
-          </a>
+          
         </div>
       </div>
       <?php endforeach; ?>
