@@ -6,7 +6,7 @@ class Database {
     private $host = 'localhost';
     private $db_name = 'iran_actu';
     private $user = 'root';
-    private $password = '';
+    private $password = 'root';
     private $charset = 'utf8mb4';
     private $pdo;
     
