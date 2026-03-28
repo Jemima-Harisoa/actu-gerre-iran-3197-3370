@@ -1,0 +1,48 @@
+# .htaccess - URL Rewriting + Configuration
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /TPIran/actu-gerre-iran-3197-3370/
+  
+  # Ne pas réécrire les fichiers et dossiers existants
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  
+  # N'exécuter les règles que si ce n'est pas déjà index.php
+  RewriteCond %{REQUEST_FILENAME} !index.php
+  
+  # Articles: /[id]/article/[slug] → index.php?page=article&id=[id]
+  RewriteRule ^([0-9]+)/article/([^/]+)/?$ index.php?page=article&id=$1 [L,QSA]
+  
+  # Catégories: /categorie/[slug] → index.php?page=category&slug=[slug]
+  RewriteRule ^categorie/([^/]+)/?$ index.php?page=category&slug=$1 [QSA,L]
+  
+  # Accueil
+  RewriteRule ^index/?$ index.php?page=home [QSA,L]
+</IfModule>
+
+# Compression GZIP
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache Browser (performances)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 2 weeks"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# CORS pour les ressources externes
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+</IfModule>
+

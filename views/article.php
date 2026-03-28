@@ -76,7 +76,7 @@ include __DIR__ . '/layout/header.php';
             <?php echo htmlspecialchars($suggested['category_name'] ?? 'Actualités'); ?>
           </div>
           <h3 class="card-featured-title">
-            <a href="?page=article&id=<?php echo $suggested['id']; ?>"><?php echo htmlspecialchars($suggested['title']); ?></a>
+            <a href="<?php echo BASE_URL; ?>/<?php echo $suggested['id']; ?>/article/<?php echo generateSlug($suggested['title']); ?>"><?php echo htmlspecialchars($suggested['title']); ?></a>
           </h3>
           <p class="card-featured-desc">
             <?php echo htmlspecialchars(substr($suggested['description'] ?? '', 0, 100)) . '...'; ?>

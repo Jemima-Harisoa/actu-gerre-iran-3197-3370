@@ -5,6 +5,13 @@
  */
 
 session_start();
+if (!headers_sent()) {
+    header('Content-Type: text/html; charset=utf-8');
+}
+
+// Définir la base URL pour les ressources (CSS, JS, images)
+// Cela fonctionne même avec les URLs réécrites par .htaccess
+define('BASE_URL', '/TPIran/actu-gerre-iran-3197-3370');
 
 // Charger les fonctions utilitaires
 require_once __DIR__ . '/inc/helpers.php';
@@ -32,5 +39,11 @@ $articleController = new ArticleController($pdo);
 $diffusionController = new DiffusionController($pdo);
 $categoryModel = new Category($pdo);
 $statutModel = new Statut($pdo);
+
+// DEBUG: Vérifier si les catégories existent
+$debugCategories = $categoryModel->getAll();
+if (empty($debugCategories)) {
+    error_log('ERREUR: Aucune catégorie trouvée dans la base de données. Vérifiez que schema.sql a été exécuté.');
+}
 
 ?>

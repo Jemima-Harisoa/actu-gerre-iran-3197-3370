@@ -24,7 +24,7 @@ include __DIR__ . '/layout/header.php';
             </div>
           </div>
           <div class="ckicker"><?php echo htmlspecialchars($article['category_name'] ?? 'Actualités'); ?></div>
-          <div class="card-title"><a href="?page=article&id=<?php echo $article['id']; ?>"><?php echo htmlspecialchars($article['title']); ?></a></div>
+          <div class="card-title"><a href="<?php echo BASE_URL; ?>/<?php echo $article['id']; ?>/article/<?php echo generateSlug($article['title']); ?>"><?php echo htmlspecialchars($article['title']); ?></a></div>
           <div class="card-desc"><?php echo htmlspecialchars(substr($article['description'] ?? '', 0, 150) . '...'); ?></div>
           <div class="card-date">
             <span class="text-secondary"><?php echo getTimeAgo($article['published_at']); ?> · <?php echo date('d M Y', strtotime($article['published_at'])); ?></span>
