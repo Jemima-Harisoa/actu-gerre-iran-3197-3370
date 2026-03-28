@@ -13,8 +13,8 @@ class Database {
     public function __construct() {
         $this->host     = $_ENV['DB_HOST']     ?? 'db';
         $this->db_name  = $_ENV['DB_NAME']      ?? 'iran_actu';
-        $this->user     = $_ENV['DB_USER']      ?? 'root';
-        $this->password = $_ENV['DB_PASSWORD']  ?? 'root';
+        $this->user     = $_ENV['DB_USER']      ?? 'dev';
+        $this->password = $_ENV['DB_PASSWORD']  ?? 'dev';
         $this->charset  = $_ENV['DB_CHARSET']   ?? 'utf8mb4';
     }
 
