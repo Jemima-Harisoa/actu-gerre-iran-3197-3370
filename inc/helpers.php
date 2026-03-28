@@ -82,4 +82,32 @@ function formatDateFr($date) {
 function eh($text) {
     echo htmlspecialchars($text);
 }
+
+/**
+ * Remplace les URLs placeholder par une image locale
+ * @param string $imageUrl URL de l'image
+ * @return string URL locale de l'image ou placeholder par défaut
+ */
+function getImageUrl($imageUrl) {
+    // Si l'URL est vide ou null
+    if (empty($imageUrl)) {
+        return 'inc/img/placeholder/default.svg';
+    }
+    
+    // Patterns de placeholder détectés
+    $placeholderPatterns = [
+        '/\?text=/',  // via.placeholder.com, placeholder.com
+        '/via\.placeholder\.com/',
+        '/placeholder\.com/',
+        '/lorempicsum/',
+    ];
+    
+    foreach ($placeholderPatterns as $pattern) {
+        if (preg_match($pattern, $imageUrl)) {
+            return 'inc/img/placeholder/default.svg';
+        }
+    }
+    
+    return $imageUrl;
+}
 ?>
