@@ -3,20 +3,19 @@
  * Configuration de la base de données
  */
 class Database {
-    private $host = 'localhost';
-    private $db_name = 'iran_actu';
-    private $user = 'root';
-    private $root_password = '';
-    private $password = '';
-    private $charset = 'utf8mb4';
+    private $host;
+    private $db_name;
+    private $user;
+    private $password;
+    private $charset;
     private $pdo;
     
     public function __construct() {
-        $this->host     = getenv('DB_HOST')     ?? 'db';
-        $this->db_name  = getenv('DB_NAME')      ?? 'iran_actu';
-        $this->user     = getenv('DB_USER')      ?? 'root';
-        $this->password = getenv('DB_PASSWORD')  ?? '';
-        $this->charset  = getenv('DB_CHARSET')   ?? 'utf8mb4';
+        $this->host     = getenv('DB_HOST')     ?: 'db';
+        $this->db_name  = getenv('DB_NAME')     ?: 'iran_actu';
+        $this->user     = getenv('DB_USER')     ?: 'root';
+        $this->password = getenv('DB_PASSWORD') ?: '';
+        $this->charset  = getenv('DB_CHARSET')  ?: 'utf8mb4';
     }
 
     public function connect() {
