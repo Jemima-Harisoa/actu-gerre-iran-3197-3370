@@ -1,0 +1,2 @@
+netstat -ano | findstr :3306
+taskkill /PID 18360 /F  
