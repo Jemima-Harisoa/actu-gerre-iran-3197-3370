@@ -10,6 +10,9 @@
   
   # N'exécuter les règles que si ce n'est pas déjà index.php
   RewriteCond %{REQUEST_FILENAME} !index.php
+
+  # Favicon par défaut: évite le 404 navigateur sur /favicon.ico
+  RewriteRule ^favicon\.ico$ inc/img/placeholder/default.svg [L]
   
   # Articles: /[id]/article/[slug] → index.php?page=article&id=[id]
   RewriteRule ^([0-9]+)/article/([^/]+)/?$ index.php?page=article&id=$1 [L,QSA]

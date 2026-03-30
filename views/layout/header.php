@@ -8,10 +8,13 @@
     <?php
       $featherFile = __DIR__ . '/../../inc/js/feather.min.js';
       $styleFile = __DIR__ . '/../../inc/css/style.css';
+      $faviconFile = __DIR__ . '/../../inc/img/placeholder/default.svg';
       $featherVersion = file_exists($featherFile) ? filemtime($featherFile) : time();
       $styleVersion = file_exists($styleFile) ? filemtime($styleFile) : time();
+      $faviconVersion = file_exists($faviconFile) ? filemtime($faviconFile) : time();
     ?>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="<?php echo BASE_URL; ?>/inc/img/placeholder/default.svg?v=<?php echo $faviconVersion; ?>">
     <script defer src="<?php echo BASE_URL; ?>/inc/js/feather.min.js?v=<?php echo $featherVersion; ?>"></script>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/inc/css/style.css?v=<?php echo $styleVersion; ?>">
 </head>
