@@ -82,4 +82,69 @@ function formatDateFr($date) {
 function eh($text) {
     echo htmlspecialchars($text);
 }
+
+/**
+ * Remplace les URLs placeholder par une image locale
+ * @param string $imageUrl URL de l'image
+ * @return string URL locale de l'image ou placeholder par défaut
+ */
+function getImageUrl($imageUrl) {
+    // Si l'URL est vide ou null
+    if (empty($imageUrl)) {
+        return BASE_URL . '/inc/img/placeholder/default.svg';
+    }
+    
+    // Patterns de placeholder détectés
+    $placeholderPatterns = [
+        '/\?text=/',  // via.placeholder.com, placeholder.com
+        '/via\.placeholder\.com/',
+        '/placeholder\.com/',
+        '/lorempicsum/',
+    ];
+    
+    foreach ($placeholderPatterns as $pattern) {
+        if (preg_match($pattern, $imageUrl)) {
+            return BASE_URL . '/inc/img/placeholder/default.svg';
+        }
+    }
+    
+    return $imageUrl;
+}
+
+/**
+ * Génère un slug SEO-friendly à partir d'un titre
+ * @param string $title Titre de l'article
+ * @return string Slug pour URL (ex: "titre-de-larticle")
+ */
+function generateSlug($title) {
+    // Convertir en minuscules
+    $slug = strtolower($title);
+    
+    // Remplacer les caractères accentués
+    $replacements = [
+        'à' => 'a', 'â' => 'a', 'ä' => 'a',
+        'é' => 'e', 'è' => 'e', 'ê' => 'e', 'ë' => 'e',
+        'î' => 'i', 'ï' => 'i',
+        'ô' => 'o', 'ö' => 'o',
+        'û' => 'u', 'ü' => 'u',
+        'ç' => 'c',
+        'œ' => 'oe',
+        'æ' => 'ae'
+    ];
+    
+    foreach ($replacements as $from => $to) {
+        $slug = str_replace($from, $to, $slug);
+    }
+    
+    // Remplacer les caractères spéciaux par des tirets
+    $slug = preg_replace('/[^a-z0-9]+/', '-', $slug);
+    
+    // Supprimer les tirets en début/fin
+    $slug = trim($slug, '-');
+    
+    // Limiter la longueur
+    $slug = substr($slug, 0, 50);
+    
+    return $slug;
+}
 ?>

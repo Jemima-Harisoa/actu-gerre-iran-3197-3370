@@ -11,7 +11,7 @@ require_once __DIR__ . '/bootstrap.php';
 $categories = $categoryModel->getAll() ?? [];
 
 // Titre de page par défaut (peut être overridé dans chaque cas)
-$pageTitle = 'Le Monde - Actualités sur l\'Iran';
+$pageTitle = 'Chronique de Guerre Iran - Actualités sur l\'Iran';
 
 // Slug de la catégorie active (pour header.php)
 $activeSlug = null;
@@ -57,7 +57,7 @@ try {
             }
             
             // Définir le titre de la page
-            $pageTitle = htmlspecialchars($article['title']) . ' - Le Monde';
+            $pageTitle = htmlspecialchars($article['title']) . ' - Chronique de Guerre Iran';
             
             include __DIR__ . '/views/article.php';
             break;
@@ -83,11 +83,41 @@ try {
             $activeSlug = $categorySlug;
             
             // Définir le titre de la page
-            $pageTitle = htmlspecialchars($category['name']) . ' - Le Monde';
+            $pageTitle = htmlspecialchars($category['name']) . ' - Chronique de Guerre Iran';
             
             include __DIR__ . '/views/category.php';
             break;
+        case 'login':
+            // Si l'utilisateur est déjà connecté, rediriger vers l'accueil 
+            if (!empty($_SESSION['user_id'])) {
+                header('Location: /login');
+                exit;
+            }  
+            
+            $errorMessage = null;
 
+            // Si le formulaire de login est soumis (POST)
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $username = trim($_POST['username'] ?? '');
+                $password = trim($_POST['password'] ?? '');
+
+                if ($authenticationController->authenticate($username, $password)) {
+                    // Authentification réussie, rediriger vers l'accueil
+                    header('Location: /');
+                    exit;
+                } else {
+                    $errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect';
+                }
+            }
+            $pageTitle = 'Connexion - Le Monde';
+
+            include __DIR__ . '/views/login.php';
+            break;
+        case 'logout':
+            $authenticationController->logout();
+            header('Location: /login');
+            exit;
+            
         case 'home':
         default:
             $data = $articleController->index();

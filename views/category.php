@@ -1,7 +1,9 @@
 <?php
-$pageTitle = htmlspecialchars($category['name'] ?? 'Catégorie') . ' - Le Monde';
+$pageTitle = htmlspecialchars($category['name'] ?? 'Catégorie') . ' - Chronique de Guerre Iran';
 include __DIR__ . '/layout/header.php';
 ?>
+
+<main id="main-content">
 
 <!-- CATEGORY HEADER -->
 <div class="container">
@@ -20,16 +22,16 @@ include __DIR__ . '/layout/header.php';
       <?php foreach ($articles as $article): ?>
         <div class="card">
           <div class="thumb">
-            <div class="thumb-inner gradient-hero-1" style="background-image: url('<?php echo htmlspecialchars($article['image_url'] ?? ''); ?>');">
+            <div class="thumb-inner gradient-hero-1" style="background-image: url('<?php echo htmlspecialchars(getImageUrl($article['image_url'] ?? '')); ?>');">
             </div>
           </div>
           <div class="ckicker"><?php echo htmlspecialchars($article['category_name'] ?? 'Actualités'); ?></div>
-          <div class="card-title"><?php echo htmlspecialchars($article['title']); ?></div>
+          <div class="card-title"><a href="<?php echo BASE_URL; ?>/<?php echo $article['id']; ?>/article/<?php echo generateSlug($article['title']); ?>"><?php echo htmlspecialchars($article['title']); ?></a></div>
           <div class="card-desc"><?php echo htmlspecialchars(substr($article['description'] ?? '', 0, 150) . '...'); ?></div>
           <div class="card-date">
             <span class="text-secondary"><?php echo getTimeAgo($article['published_at']); ?> · <?php echo date('d M Y', strtotime($article['published_at'])); ?></span>
           </div>
-          <a href="?page=article&id=<?php echo $article['id']; ?>" class="link-block link-block-sm">Lire plus →</a>
+          
         </div>
       <?php endforeach; ?>
     <?php else: ?>
@@ -37,5 +39,7 @@ include __DIR__ . '/layout/header.php';
     <?php endif; ?>
   </div>
 </div>
+
+</main>
 
 <?php include __DIR__ . '/layout/footer.php'; ?>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="themGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2e2c28;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6b6760;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="themGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d0011b;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#0057a8;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="430" fill="url(#themGrad1)"/>
+  <rect width="800" height="430" fill="url(#themGrad2)"/>
+</svg>

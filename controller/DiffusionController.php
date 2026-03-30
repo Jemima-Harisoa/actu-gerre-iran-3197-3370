@@ -1,15 +1,20 @@
 <?php
 
 require_once __DIR__ . '/../model/Diffusion.php';
+require_once __DIR__ . '/../model/Article.php';
 
 /**
  * Contrôleur Diffusion (En Direct)
  */
 class DiffusionController {
     private $diffusion;
+    private $article;
+    private $pdo;
     
     public function __construct($pdo) {
+        $this->pdo = $pdo;
         $this->diffusion = new Diffusion($pdo);
+        $this->article = new Article($pdo);
     }
 
     /**
@@ -17,6 +22,42 @@ class DiffusionController {
      */
     public function getActive() {
         $diffusions = $this->diffusion->getActive(8);
+
+        // Fallback utile en dev/demo: si aucune diffusion n'existe,
+        // réutiliser les derniers titres d'articles pour alimenter le ticker.
+        if (empty($diffusions)) {
+            $recentArticles = $this->article->getAll(8, 0);
+            $diffusions = array_map(function ($article) {
+                return [
+                    'id' => 'article_' . ($article['id'] ?? uniqid()),
+                    'title' => $article['title'] ?? 'Actualité',
+                    'status_id' => 1,
+                    'status_name' => 'en_cours',
+                    'created_at' => $article['published_at'] ?? date('Y-m-d H:i:s')
+                ];
+            }, $recentArticles);
+        }
+
+        // Dernier filet de sécurité si la base est vide (premier démarrage)
+        if (empty($diffusions)) {
+            $diffusions = [
+                [
+                    'id' => 'fallback_1',
+                    'title' => 'Suivez les dernières actualités en direct sur la région.',
+                    'status_id' => 1,
+                    'status_name' => 'en_cours',
+                    'created_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 'fallback_2',
+                    'title' => 'Le fil live sera alimenté automatiquement dès publication.',
+                    'status_id' => 1,
+                    'status_name' => 'en_cours',
+                    'created_at' => date('Y-m-d H:i:s')
+                ]
+            ];
+        }
+
         return ['diffusions' => $diffusions];
     }
 

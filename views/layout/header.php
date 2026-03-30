@@ -3,25 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($pageTitle ?? 'Le Monde – Actualités'); ?></title>
+    <title><?php echo htmlspecialchars($pageTitle ?? 'Chronique de Guerre Iran – Actualités'); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($pageTitle ?? 'Chronique de Guerre Iran – Actualités'); ?>">
+    <?php
+      $featherFile = __DIR__ . '/../../inc/js/feather.min.js';
+      $styleFile = __DIR__ . '/../../inc/css/style.css';
+      $faviconFile = __DIR__ . '/../../inc/img/placeholder/default.svg';
+      $featherVersion = file_exists($featherFile) ? filemtime($featherFile) : time();
+      $styleVersion = file_exists($styleFile) ? filemtime($styleFile) : time();
+      $faviconVersion = file_exists($faviconFile) ? filemtime($faviconFile) : time();
+    ?>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <link rel="stylesheet" href="inc/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="<?php echo BASE_URL; ?>/inc/img/placeholder/default.svg?v=<?php echo $faviconVersion; ?>">
+    <script defer src="<?php echo BASE_URL; ?>/inc/js/feather.min.js?v=<?php echo $featherVersion; ?>"></script>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/inc/css/style.css?v=<?php echo $styleVersion; ?>">
 </head>
 <body>
 
 <!-- UTILITY BAR -->
 <div class="util-bar">
   <div class="util-bar__left">
-    <a href="#"><svg data-feather="star"></svg>Le Monde</a>
+    <a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>"><svg data-feather="star"></svg>Chronique de Guerre Iran</a>
     <a href="#"><svg data-feather="smartphone"></svg>Application</a>
     <a href="#"><svg data-feather="mail"></svg>Newsletters</a>
     <a href="#"><svg data-feather="mic"></svg>Podcasts</a>
   </div>
-  <div class="util-bar__right">
-    <a href="#"><svg data-feather="log-in"></svg>Se connecter</a>
-    <button class="btn-sub-util">S'abonner</button>
-  </div>
+  <?php if (!empty($_SESSION['user_id'])): ?>
+    <div class="util-bar__right">
+      <a href="#"><svg data-feather="user"></svg>Mon compte</a>
+      <a href="/logout"><svg data-feather="log-out"></svg>Se déconnecter</a>
+    </div>
+  <?php else: ?>
+    <div class="util-bar__right">
+      <a href="/login"><svg data-feather="log-in"></svg>Se connecter</a>
+      <button class="btn-sub-util">S'abonner</button>
+    </div>
+  <?php endif;?>
 </div>
 
 <!-- MAIN NAV -->
@@ -36,7 +53,7 @@
       Rechercher
     </button>
   </div>
-  <div class="nav-logo"><a href="index.php">Le Monde</a></div>
+  <div class="nav-logo"><a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>">Chronique de Guerre Iran</a></div>
   <div class="nav-right">
     <div class="nav-lang">
       <a href="#" class="active">FR</a>
@@ -51,9 +68,16 @@
 <!-- RUBRIQUE NAV -->
 <nav class="rubrique-nav">
   <ul>
+    
+    <li class="<?php echo isset($activeSlug) && $activeSlug === 'a-la-une' ? 'active' : ''; ?>">
+      <a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>">
+        À la une
+      </a>
+    </li>
+
     <?php foreach ($categories as $cat): ?>
       <li class="<?php echo isset($activeSlug) && $cat['slug'] === $activeSlug ? 'active' : ''; ?>">
-        <a href="?page=category&slug=<?php echo urlencode($cat['slug']); ?>">
+        <a href="<?php echo BASE_URL; ?>/categorie/<?php echo urlencode($cat['slug']); ?>">
           <?php echo htmlspecialchars($cat['name']); ?>
         </a>
       </li>
@@ -68,6 +92,7 @@
     En direct
   </div>
   <div class="ticker-scroll">
+    
     <div class="ticker-track">
       <?php if (!empty($diffusions)): ?>
         <?php foreach ($diffusions as $diffusion): ?>

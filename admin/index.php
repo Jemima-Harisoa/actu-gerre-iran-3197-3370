@@ -91,7 +91,7 @@ $categories = $categoryModel->getAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panneau d'Administration - Le Monde</title>
+    <title>Panneau d'Administration - Chronique de Guerre Iran</title>
     <style>
         * {
             margin: 0;
