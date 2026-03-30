@@ -87,33 +87,8 @@ try {
             
             include __DIR__ . '/views/category.php';
             break;
-        case 'login':
-            // Si l'utilisateur est déjà connecté, rediriger vers l'accueil 
-            if (!empty($_SESSION['user_id'])) {
-                header('Location: ?page=home');
-                exit;
-            }  
-            
-            $errorMessage = null;
 
-            // Si le formulaire de login est soumis (POST)
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $username = trim($_POST['username'] ?? '');
-                $password = trim($_POST['password'] ?? '');
-
-                if ($authenticationController->authenticate($username, $password)) {
-                    // Authentification réussie, rediriger vers l'accueil
-                    header('Location: index.php');
-                    exit;
-                } else {
-                    $errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect';
-                }
-            }
-            $pageTitle = 'Connexion - Le Monde';
-
-            include __DIR__ . '/views/login.php';
-            break;
-        case 'home':            
+        case 'home':
         default:
             $data = $articleController->index();
             $articles = $data['articles'];
