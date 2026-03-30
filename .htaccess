@@ -2,7 +2,6 @@
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /TPIran/actu-gerre-iran-3197-3370/
   
   # Ne pas réécrire les fichiers et dossiers existants
   RewriteCond %{REQUEST_FILENAME} -f [OR]

@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($pageTitle ?? 'Le Monde – Actualités'); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($pageTitle ?? 'Le Monde – Actualités'); ?>">
+    <?php
+      $featherFile = __DIR__ . '/../../inc/js/feather.min.js';
+      $styleFile = __DIR__ . '/../../inc/css/style.css';
+      $featherVersion = file_exists($featherFile) ? filemtime($featherFile) : time();
+      $styleVersion = file_exists($styleFile) ? filemtime($styleFile) : time();
+    ?>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="<?php echo BASE_URL; ?>/inc/js/feather.min.js"></script>
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/inc/css/style.css">
+    <script defer src="<?php echo BASE_URL; ?>/inc/js/feather.min.js?v=<?php echo $featherVersion; ?>"></script>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/inc/css/style.css?v=<?php echo $styleVersion; ?>">
 </head>
 <body>
 
@@ -37,7 +43,7 @@
       Rechercher
     </button>
   </div>
-  <div class="nav-logo"><a href="index.php">Le Monde</a></div>
+  <div class="nav-logo"><a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>">Le Monde</a></div>
   <div class="nav-right">
     <div class="nav-lang">
       <a href="#" class="active">FR</a>
@@ -54,7 +60,7 @@
   <ul>
     
     <li class="<?php echo isset($activeSlug) && $activeSlug === 'a-la-une' ? 'active' : ''; ?>">
-      <a href="<?php echo BASE_URL; ?>">
+      <a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>">
         À la une
       </a>
     </li>

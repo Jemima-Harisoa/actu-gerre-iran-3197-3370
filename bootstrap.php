@@ -9,9 +9,26 @@ if (!headers_sent()) {
     header('Content-Type: text/html; charset=utf-8');
 }
 
-// Définir la base URL pour les ressources (CSS, JS, images)
-// Cela fonctionne même avec les URLs réécrites par .htaccess
-define('BASE_URL', '/TPIran/actu-gerre-iran-3197-3370');
+// Définir dynamiquement la base URL pour les ressources (CSS, JS, images).
+// - Docker (DocumentRoot = projet): BASE_URL = ''
+// - Sous-dossier (ex: /mon-projet): BASE_URL = '/mon-projet'
+// Un override est possible via la variable d'environnement APP_BASE_URL.
+$scriptName = $_SERVER['SCRIPT_NAME'] ?? '/index.php';
+$detectedBaseUrl = rtrim(str_replace('\\', '/', dirname($scriptName)), '/');
+
+if ($detectedBaseUrl === '' || $detectedBaseUrl === '.') {
+    $detectedBaseUrl = '';
+}
+
+$envBaseUrl = getenv('APP_BASE_URL');
+if ($envBaseUrl !== false && trim($envBaseUrl) !== '') {
+    $detectedBaseUrl = '/' . trim($envBaseUrl, '/');
+    if ($detectedBaseUrl === '/') {
+        $detectedBaseUrl = '';
+    }
+}
+
+define('BASE_URL', $detectedBaseUrl);
 
 // Charger les fonctions utilitaires
 require_once __DIR__ . '/inc/helpers.php';
