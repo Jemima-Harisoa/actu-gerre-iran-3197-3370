@@ -1,42 +1,27 @@
--- Script d'authentification backoffice pour MySQL
+-- Script d'authentification backoffice pour la base de données 
 
--- Table des rôles
-CREATE TABLE IF NOT EXISTS role (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+-- Création de la table des rôles pour différencier les types d'utilisateurs
+CrEATE TABLE IF NOT EXISTS role (
+    id SERIAL PRIMARY KEY,
     name VARCHAR(50) UNIQUE NOT NULL
-) ENGINE=InnoDB;
+);
 
+-- Création de l'utilisateur backoffice avec un mot de passe sécurisé
 CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    role_id INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    role_id INT NOT NULL DEFAULT 0 REFERENCES role(id) , -- 0: utilisateur normal
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-    CONSTRAINT fk_users_role
-        FOREIGN KEY (role_id)
-        REFERENCES role(id)
-) ENGINE=InnoDB;
-
--- Table des sessions
 CREATE TABLE IF NOT EXISTS sessions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     session_token VARCHAR(255) UNIQUE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    expires_at TIMESTAMP NOT NULL,
+    expires_at TIMESTAMP NOT NULL
+);
 
-    CONSTRAINT fk_sessions_user 
-        FOREIGN KEY (user_id) 
-        REFERENCES users(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-) ENGINE=InnoDB;
-
--- Insertion d'un rôle par défaut
-INSERT INTO role (name) VALUES ('admin'), ('user')
-ON DUPLICATE KEY UPDATE name = name;
-
--- Exemple d'utilisateur (le mot de passe doit être hashé côté application)
-INSERT INTO users (username, password_hash, role_id) 
-VALUES ('admin', '$2y$10$6uQHZy2ZyTd.DP7GOcIY0Owrx/i0rueL38Bt2rwexhVRZDGxA0V7G', 1); -- mot de passe : "admin123"
+-- Exemple d'insertion d'un utilisateur (le mot de passe doit être hashé avant l'insertion) 
+INSERT INTO users (username, password_hash) VALUES ('admin', 'hashed_password_here');

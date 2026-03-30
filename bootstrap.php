@@ -25,7 +25,6 @@ require_once __DIR__ . '/model/Diffusion.php';
 require_once __DIR__ . '/model/ArticleImage.php';
 require_once __DIR__ . '/controller/ArticleController.php';
 require_once __DIR__ . '/controller/DiffusionController.php';
-require_once __DIR__ . '/controller/AuthenticationController.php';
 
 // Connexion à la base de données - UNE SEULE FOIS
 $database = new Database();
@@ -40,7 +39,6 @@ $articleController = new ArticleController($pdo);
 $diffusionController = new DiffusionController($pdo);
 $categoryModel = new Category($pdo);
 $statutModel = new Statut($pdo);
-$authenticationController = new AuthenticationController($pdo);
 
 // DEBUG: Vérifier si les catégories existent
 $debugCategories = $categoryModel->getAll();

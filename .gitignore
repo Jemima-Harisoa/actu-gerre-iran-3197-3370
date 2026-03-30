@@ -1,5 +1,3 @@
 # ignorer la structure de l'environnement de développement
 .env
 
-# strcuture de l'environnement de développement
-structure.txt
