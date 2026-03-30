@@ -3,6 +3,8 @@ $pageTitle = htmlspecialchars($category['name'] ?? 'Catégorie') . ' - Chronique
 include __DIR__ . '/layout/header.php';
 ?>
 
+<main id="main-content">
+
 <!-- CATEGORY HEADER -->
 <div class="container">
   <h1 class="section-title-lg">
@@ -37,5 +39,7 @@ include __DIR__ . '/layout/header.php';
     <?php endif; ?>
   </div>
 </div>
+
+</main>
 
 <?php include __DIR__ . '/layout/footer.php'; ?>

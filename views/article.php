@@ -3,6 +3,8 @@ $pageTitle = htmlspecialchars($article['title'] ?? 'Article') . ' - Chronique de
 include __DIR__ . '/layout/header.php';
 ?>
 
+<main id="main-content">
+
 <!-- ARTICLE -->
 <div class="article-wrap">
 
@@ -89,5 +91,7 @@ include __DIR__ . '/layout/header.php';
   </div>
 </section>
 <?php endif; ?>
+
+</main>
 
 <?php include __DIR__ . '/layout/footer.php'; ?>

@@ -23,7 +23,7 @@
 <!-- UTILITY BAR -->
 <div class="util-bar">
   <div class="util-bar__left">
-    <a href="#"><svg data-feather="star"></svg>Chronique de Guerre Iran</a>
+    <a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>"><svg data-feather="star"></svg>Chronique de Guerre Iran</a>
     <a href="#"><svg data-feather="smartphone"></svg>Application</a>
     <a href="#"><svg data-feather="mail"></svg>Newsletters</a>
     <a href="#"><svg data-feather="mic"></svg>Podcasts</a>

@@ -3,6 +3,9 @@ $pageTitle = 'Chronique de Guerre Iran – Actualités';
 include __DIR__ . '/layout/header.php';
 ?>
 
+<main id="main-content">
+  <h1 class="sr-only">Chronique de Guerre Iran - Actualités</h1>
+
 <!-- ARTICLES GRID -->
 <div class="section">
   <div class="sect-header">
@@ -31,5 +34,7 @@ include __DIR__ . '/layout/header.php';
     <?php endif; ?>
   </div>
 </div>
+
+</main>
 
 <?php include __DIR__ . '/layout/footer.php'; ?>
