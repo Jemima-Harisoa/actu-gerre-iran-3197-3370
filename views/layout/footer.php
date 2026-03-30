@@ -3,14 +3,14 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-main">
-    <div class="footer-logo">Le Monde</div>
+    <div class="footer-logo">Chronique de Guerre Iran</div>
     <div class="fcol">
-      <h4>Le Monde</h4>
+      <h4>Chronique de Guerre Iran</h4>
       <a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>"><svg data-feather="home"></svg>À la une</a>
       <a href="#"><svg data-feather="archive"></svg>Archives</a>
       <a href="#"><svg data-feather="mail"></svg>Newsletters</a>
       <a href="#"><svg data-feather="mic"></svg>Podcasts</a>
-      <a href="#"><svg data-feather="file-text"></svg>Le Monde en PDF</a>
+      <a href="#"><svg data-feather="file-text"></svg>Chronique de Guerre Iran en PDF</a>
     </div>
     <div class="fcol">
       <h4>International</h4>
@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="footer-bottom">          
-    <span style="color:#2e2e2e;">© Le Monde 2025</span>
+    <span style="color:#2e2e2e;">© Chronique de Guerre Iran 2025</span>
     <div class="footer-bottom-links">
       <a href="#">Mentions légales</a>
       <a href="#">Confidentialité</a>

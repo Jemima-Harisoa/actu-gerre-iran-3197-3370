@@ -11,7 +11,7 @@ require_once __DIR__ . '/bootstrap.php';
 $categories = $categoryModel->getAll() ?? [];
 
 // Titre de page par défaut (peut être overridé dans chaque cas)
-$pageTitle = 'Le Monde - Actualités sur l\'Iran';
+$pageTitle = 'Chronique de Guerre Iran - Actualités sur l\'Iran';
 
 // Slug de la catégorie active (pour header.php)
 $activeSlug = null;
@@ -57,7 +57,7 @@ try {
             }
             
             // Définir le titre de la page
-            $pageTitle = htmlspecialchars($article['title']) . ' - Le Monde';
+            $pageTitle = htmlspecialchars($article['title']) . ' - Chronique de Guerre Iran';
             
             include __DIR__ . '/views/article.php';
             break;
@@ -83,7 +83,7 @@ try {
             $activeSlug = $categorySlug;
             
             // Définir le titre de la page
-            $pageTitle = htmlspecialchars($category['name']) . ' - Le Monde';
+            $pageTitle = htmlspecialchars($category['name']) . ' - Chronique de Guerre Iran';
             
             include __DIR__ . '/views/category.php';
             break;

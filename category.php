@@ -44,7 +44,7 @@ $diffusions = $diffusionController->getActive()['diffusions'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($category['name']); ?> - Le Monde</title>
+    <title><?php echo htmlspecialchars($category['name']); ?> - Chronique de Guerre Iran</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="inc/css/style.css">
@@ -54,7 +54,7 @@ $diffusions = $diffusionController->getActive()['diffusions'];
 <!-- UTILITY BAR -->
 <div class="util-bar">
   <div class="util-bar__left">
-    <a href="#"><svg data-feather="star"></svg>Le Monde</a>
+    <a href="#"><svg data-feather="star"></svg>Chronique de Guerre Iran</a>
     <a href="#"><svg data-feather="smartphone"></svg>Application</a>
     <a href="#"><svg data-feather="mail"></svg>Newsletters</a>
     <a href="#"><svg data-feather="mic"></svg>Podcasts</a>
@@ -77,7 +77,7 @@ $diffusions = $diffusionController->getActive()['diffusions'];
       Rechercher
     </button>
   </div>
-  <div class="nav-logo"><a href="index.php">Le Monde</a></div>
+  <div class="nav-logo"><a href="index.php">Chronique de Guerre Iran</a></div>
   <div class="nav-right">
     <div class="nav-lang">
       <a href="#" class="active">FR</a>
@@ -156,9 +156,9 @@ $diffusions = $diffusionController->getActive()['diffusions'];
 <!-- FOOTER -->
 <footer>
   <div class="footer-main">
-    <div class="footer-logo">Le Monde</div>
+    <div class="footer-logo">Chronique de Guerre Iran</div>
     <div class="fcol">
-      <h4>Le Monde</h4>
+      <h4>Chronique de Guerre Iran</h4>
       <a href="index.php"><svg data-feather="home"></svg>À la une</a>
       <a href="#"><svg data-feather="archive"></svg>Archives</a>
       <a href="#"><svg data-feather="mail"></svg>Newsletters</a>
@@ -172,7 +172,7 @@ $diffusions = $diffusionController->getActive()['diffusions'];
     </div>
   </div>
   <div class="footer-bottom">
-    <span style="color:#2e2e2e;">© Le Monde 2025</span>
+    <span style="color:#2e2e2e;">© Chronique de Guerre Iran 2025</span>
     <div class="footer-bottom-links">
       <a href="#">Mentions légales</a>
       <a href="#">Confidentialité</a>

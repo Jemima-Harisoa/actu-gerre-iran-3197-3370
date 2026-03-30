@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Le Monde – Actualités';
+$pageTitle = 'Chronique de Guerre Iran – Actualités';
 include __DIR__ . '/layout/header.php';
 ?>
 

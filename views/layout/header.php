@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($pageTitle ?? 'Le Monde – Actualités'); ?></title>
-    <meta name="description" content="<?php echo htmlspecialchars($pageTitle ?? 'Le Monde – Actualités'); ?>">
+    <title><?php echo htmlspecialchars($pageTitle ?? 'Chronique de Guerre Iran – Actualités'); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($pageTitle ?? 'Chronique de Guerre Iran – Actualités'); ?>">
     <?php
       $featherFile = __DIR__ . '/../../inc/js/feather.min.js';
       $styleFile = __DIR__ . '/../../inc/css/style.css';
@@ -23,7 +23,7 @@
 <!-- UTILITY BAR -->
 <div class="util-bar">
   <div class="util-bar__left">
-    <a href="#"><svg data-feather="star"></svg>Le Monde</a>
+    <a href="#"><svg data-feather="star"></svg>Chronique de Guerre Iran</a>
     <a href="#"><svg data-feather="smartphone"></svg>Application</a>
     <a href="#"><svg data-feather="mail"></svg>Newsletters</a>
     <a href="#"><svg data-feather="mic"></svg>Podcasts</a>
@@ -46,7 +46,7 @@
       Rechercher
     </button>
   </div>
-  <div class="nav-logo"><a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>">Le Monde</a></div>
+  <div class="nav-logo"><a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>">Chronique de Guerre Iran</a></div>
   <div class="nav-right">
     <div class="nav-lang">
       <a href="#" class="active">FR</a>

@@ -1,5 +1,5 @@
 <?php
-$pageTitle = htmlspecialchars($article['title'] ?? 'Article') . ' - Le Monde';
+$pageTitle = htmlspecialchars($article['title'] ?? 'Article') . ' - Chronique de Guerre Iran';
 include __DIR__ . '/layout/header.php';
 ?>
 
