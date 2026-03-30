@@ -134,12 +134,12 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 -- ============================================
 -- Insérer des images multiples pour les articles
 -- ============================================
-INSERT INTO article_images (article_id, caption) VALUES
-(1,'Vue de Téhéran - Guerre Iran'),
-(1,'Centre ville - Guerre Iran'),
-(1,'Monument historique - Guerre Iran'),
-(2, 'Parlement iranien - Guerre Iran'),
-(2, 'Débat politique - Guerre Iran');
+INSERT INTO article_images (article_id, image_url, caption) VALUES
+(1, 'https://via.placeholder.com/760x430?text=Teheran+Vue+1', 'Vue de Téhéran - Guerre Iran'),
+(1, 'https://via.placeholder.com/760x430?text=Teheran+Centre+Ville', 'Centre ville - Guerre Iran'),
+(1, 'https://via.placeholder.com/760x430?text=Teheran+Monument', 'Monument historique - Guerre Iran'),
+(2, 'https://via.placeholder.com/760x430?text=Parlement+Iranien', 'Parlement iranien - Guerre Iran'),
+(2, 'https://via.placeholder.com/760x430?text=Debat+Politique+Iran', 'Débat politique - Guerre Iran');
 
 -- ============================================
 -- Insérer les statuts par défaut
