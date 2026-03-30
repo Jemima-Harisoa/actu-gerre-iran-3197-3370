@@ -39,5 +39,4 @@ ON DUPLICATE KEY UPDATE name = name;
 
 -- Exemple d'utilisateur (le mot de passe doit être hashé côté application)
 INSERT INTO users (username, password_hash, role_id) 
-VALUES ('admin', 'hashed_password_here', 1);
-
+VALUES ('admin', '$2y$10$6uQHZy2ZyTd.DP7GOcIY0Owrx/i0rueL38Bt2rwexhVRZDGxA0V7G', 1); -- mot de passe : "admin123"

@@ -87,12 +87,10 @@ try {
             
             include __DIR__ . '/views/category.php';
             break;
-
-        case 'home':
         case 'login':
             // Si l'utilisateur est déjà connecté, rediriger vers l'accueil 
             if (!empty($_SESSION['user_id'])) {
-                header('Location: index.php');
+                header('Location: ?page=home');
                 exit;
             }  
             
@@ -112,10 +110,10 @@ try {
                 }
             }
             $pageTitle = 'Connexion - Le Monde';
-            
+
             include __DIR__ . '/views/login.php';
             break;
-
+        case 'home':            
         default:
             $data = $articleController->index();
             $articles = $data['articles'];
