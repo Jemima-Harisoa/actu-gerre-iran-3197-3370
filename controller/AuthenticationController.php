@@ -30,7 +30,6 @@ class AuthenticationController
 
         if ($user && password_verify($password, $user['password_hash'])) {
             // Authentification réussie, on peut stocker les informations de l'utilisateur en session
-            session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role_id'] = $user['role_id'];

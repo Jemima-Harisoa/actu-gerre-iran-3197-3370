@@ -1,14 +1,12 @@
 # Active le moteur de réécriture d'URLs d'Apache
 RewriteEngine On
 
-# Si le fichier demandée existe, ne pas réécrire l'URL et laisser Apache le servir normalement
+# Fichiers et dossiers réels → servis directement (css, images...)
 RewriteCond %{REQUEST_FILENAME} !-f
-
-# Pareil pour les dossiers
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Les urls qui ne correspondent pas passe par index.php
+# Tout le reste → index.php
 RewriteRule ^ index.php [L]
 
-# Pas d'acces au dossier sensible
+# Bloquer l'accès direct aux dossiers sensibles
 RewriteRule ^(config|model|controller|helper|database)/ - [F,L]
