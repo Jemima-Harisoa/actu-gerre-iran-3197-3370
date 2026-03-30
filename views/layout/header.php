@@ -28,10 +28,17 @@
     <a href="#"><svg data-feather="mail"></svg>Newsletters</a>
     <a href="#"><svg data-feather="mic"></svg>Podcasts</a>
   </div>
-  <div class="util-bar__right">
-    <a href="#"><svg data-feather="log-in"></svg>Se connecter</a>
-    <button class="btn-sub-util">S'abonner</button>
-  </div>
+  <?php if (!empty($_SESSION['user_id'])): ?>
+    <div class="util-bar__right">
+      <a href="#"><svg data-feather="user"></svg>Mon compte</a>
+      <a href="/logout"><svg data-feather="log-out"></svg>Se déconnecter</a>
+    </div>
+  <?php else: ?>
+    <div class="util-bar__right">
+      <a href="/login"><svg data-feather="log-in"></svg>Se connecter</a>
+      <button class="btn-sub-util">S'abonner</button>
+    </div>
+  <?php endif;?>
 </div>
 
 <!-- MAIN NAV -->
@@ -85,6 +92,7 @@
     En direct
   </div>
   <div class="ticker-scroll">
+    
     <div class="ticker-track">
       <?php if (!empty($diffusions)): ?>
         <?php foreach ($diffusions as $diffusion): ?>

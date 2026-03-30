@@ -22,6 +22,12 @@
   
   # Accueil
   RewriteRule ^index/?$ index.php?page=home [QSA,L]
+
+  # Login
+  RewriteRule ^login/?$ index.php?page=login [L,QSA]
+
+  # Logout
+  RewriteRule ^logout/?$ index.php?page=logout [L,QSA]
 </IfModule>
 
 # Compression GZIP
