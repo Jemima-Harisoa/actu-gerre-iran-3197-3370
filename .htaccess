@@ -1,59 +1,45 @@
-# Active le moteur de réécriture d'URLs d'Apache
-RewriteEngine On
-
-# Fichiers et dossiers réels → servis directement (css, images...)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-# Tout le reste → index.php
-RewriteRule ^ index.php [L]
-
-# Bloquer l'accès direct aux dossiers sensibles
-RewriteRule ^(config|model|controller|helper|database)/ - [F,L]# .htaccess - URL Rewriting + Configuration
-
+# -----------------------------------------------
+# RÉÉCRITURE D'URLS - Front Controller
+# -----------------------------------------------
 <IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /TPIran/actu-gerre-iran-3197-3370/
-  
-  # Ne pas réécrire les fichiers et dossiers existants
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^ - [L]
-  
-  # N'exécuter les règles que si ce n'est pas déjà index.php
-  RewriteCond %{REQUEST_FILENAME} !index.php
-  
-  # Articles: /[id]/article/[slug] → index.php?page=article&id=[id]
-  RewriteRule ^([0-9]+)/article/([^/]+)/?$ index.php?page=article&id=$1 [L,QSA]
-  
-  # Catégories: /categorie/[slug] → index.php?page=category&slug=[slug]
-  RewriteRule ^categorie/([^/]+)/?$ index.php?page=category&slug=$1 [QSA,L]
-  
-  # Accueil
-  RewriteRule ^index/?$ index.php?page=home [QSA,L]
+    RewriteEngine On
+
+    # Bloquer l'accès direct aux dossiers sensibles
+    RewriteRule ^(config|model|controller|helper|database)/ - [F,L]
+
+    # Fichiers et dossiers réels → servis directement (css, images...)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Tout le reste → index.php
+    RewriteRule ^ index.php [L]
 </IfModule>
 
-# Compression GZIP
+# -----------------------------------------------
+# COMPRESSION GZIP
+# -----------------------------------------------
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
 </IfModule>
 
-# Cache Browser (performances)
+# -----------------------------------------------
+# CACHE NAVIGATEUR
+# -----------------------------------------------
 <IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresDefault "access plus 2 weeks"
-  ExpiresByType image/jpg "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/gif "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType text/javascript "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
+    ExpiresActive On
+    ExpiresDefault "access plus 2 weeks"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
 
-# CORS pour les ressources externes
+# -----------------------------------------------
+# CORS
+# -----------------------------------------------
 <IfModule mod_headers.c>
-  Header set Access-Control-Allow-Origin "*"
-</IfModule>
-
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>s
