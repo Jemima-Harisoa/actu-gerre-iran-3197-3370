@@ -1,0 +1,12 @@
+# Active le moteur de réécriture d'URLs d'Apache
+RewriteEngine On
+
+# Fichiers et dossiers réels → servis directement (css, images...)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Tout le reste → index.php
+RewriteRule ^ index.php [L]
+
+# Bloquer l'accès direct aux dossiers sensibles
+RewriteRule ^(config|model|controller|helper|database)/ - [F,L]
