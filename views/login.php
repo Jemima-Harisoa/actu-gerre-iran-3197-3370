@@ -27,12 +27,12 @@
 
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" class="form-control" required>
+            <input type="text" id="username" placeholder="admin" name="username" class="form-control" required>
         </div>
 
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" class="form-control" required>
+            <input type="password" id="password" name="password" placeholder="admin123" class="form-control" required>
         </div>
 
         <button type="submit" class="btn btn-primary">

@@ -17,7 +17,15 @@
     <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/inc/img/placeholder/default.svg?v=<?php echo $faviconVersion; ?>">
     <script defer src="<?= BASE_URL ?>/inc/js/feather.min.js?v=<?php echo $featherVersion; ?>"></script>
     <link rel="stylesheet" href="<?= BASE_URL ?>/inc/css/style.css?v=<?php echo $styleVersion; ?>">
-
+    <script>
+        function toggleSearch() {
+            const searchContainer = document.getElementById('search-bar-container');
+            searchContainer.classList.toggle('active');
+            if (searchContainer.classList.contains('active')) {
+                searchContainer.querySelector('input').focus();
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -49,13 +57,21 @@
       <svg data-feather="menu"></svg>
       Menu
     </button>
-    <button class="nav-btn search">
+    <button class="nav-btn search" onclick="toggleSearch()">
       <svg data-feather="search"></svg>
       Rechercher
     </button>
   </div>
   <div class="nav-logo"><a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>">Chronique de Guerre Iran</a></div>
   <div class="nav-right">
+    <div class="search-bar-container" id="search-bar-container">
+        <form action="<?= BASE_URL ?>/search.php" method="get">
+            <input type="search" name="q" placeholder="Rechercher un article..." class="search-input">
+            <button type="submit" class="search-submit-btn">
+                <svg data-feather="search"></svg>
+            </button>
+        </form>
+    </div>
     <div class="nav-lang">
       <a href="#" class="active">FR</a>
       <a href="#">EN</a>

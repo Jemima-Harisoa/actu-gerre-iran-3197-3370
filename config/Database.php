@@ -24,8 +24,13 @@ class Database {
         try {
             $this->pdo = new PDO($dsn, $this->user, $this->password, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci",
+                PDO::ATTR_PERSISTENT => false // Optionnel: désactive les connexions persistantes si non nécessaire
             ]);
+            // Forcer l'encodage UTF-8 sur la connexion
+            $this->pdo->exec("SET NAMES 'utf8mb4'");
+            $this->pdo->exec("SET CHARACTER SET 'utf8mb4'");
+            
             return $this->pdo;
         } catch (PDOException $e) {
             echo 'Erreur de connexion: ' . $e->getMessage();
