@@ -34,10 +34,10 @@
 <!-- UTILITY BAR -->
 <div class="util-bar">
   <div class="util-bar__left">
-    <a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>"><svg data-feather="star"></svg>Chronique de Guerre Iran</a>
-    <a href="#"><svg data-feather="smartphone"></svg>Application</a>
-    <a href="#"><svg data-feather="mail"></svg>Newsletters</a>
-    <a href="#"><svg data-feather="mic"></svg>Podcasts</a>
+    <a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>" aria-label="Accueil - Chronique de Guerre Iran"><svg data-feather="star"></svg>Chronique de Guerre Iran</a>
+    <a href="#" aria-label="Télécharger l'application mobile"><svg data-feather="smartphone"></svg>Application</a>
+    <a href="#" aria-label="S'inscrire à nos newsletters"><svg data-feather="mail"></svg>Newsletters</a>
+    <a href="#" aria-label="Écouter nos podcasts"><svg data-feather="mic"></svg>Podcasts</a>
   </div>
   <?php if (!empty($_SESSION['user_id'])): ?>
     <div class="util-bar__right">
@@ -64,7 +64,7 @@
       <span class="sr-only">Rechercher</span>
     </button>
   </div>
-  <div class="nav-logo"><a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>">Chronique de Guerre Iran</a></div>
+  <div class="nav-logo"><a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>" aria-label="Chronique de Guerre Iran - Logo">Chronique de Guerre Iran</a></div>
   <div class="nav-right">
     <div class="search-bar-container" id="search-bar-container">
         <form action="<?= BASE_URL ?>/search.php" method="get">
