@@ -112,7 +112,7 @@ try {
 
                 if ($authenticationController->authenticate($username, $password)) {
                     // Authentification réussie, rediriger vers l'accueil
-                    header('Location: /');
+                    header('Location: /admin');
                     exit;
                 } else {
                     $errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect';
