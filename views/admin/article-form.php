@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($pageTitle ?? 'Le Monde – Actualités'); ?></title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <link rel="stylesheet" href="inc/css/style.css">
-    <link rel="stylesheet" href="inc/css/editor.css">
-</head>
-<body>
+<?php include __DIR__ . '/../layout/admin-header.php' ?>
 
 <main class="container container-sm">
 
@@ -26,14 +15,19 @@
 
     <!-- Catégorie -->
     <div class="form-group">
-      <label>Catégorie</label>
-      <input type="text" name="category" class="form-control">
+        <select name="category_id" class="form-control" required>
+            <?php foreach ($categoriesForSelect as $cat): ?>
+                <option value="<?php echo $cat['id']; ?>">
+                    <?php echo htmlspecialchars($cat['name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
     </div>
 
     <!-- Image principale -->
     <div class="form-group">
       <label>Image principale</label>
-      <input type="file" name="hero" class="form-control">
+      <input type="file" name="image" class="form-control">
     </div>
 
     <!-- Toolbar -->
@@ -51,8 +45,11 @@
     <!-- Hidden input -->
     <textarea name="content" id="content" hidden></textarea>
 
-    <button type="submit" class="btn btn-primary mt-30">Publier</button>
-
+    <!-- Action button -->
+    <div class="editor-actions">
+        <button type="submit" name="action" value="publish">Publier</button>
+        <button type="submit" name="action" value="draft">Brouillon</button>
+    </div>
   </form>
 
 </main>
@@ -81,5 +78,4 @@ document.querySelector("form").addEventListener("submit", function() {
   document.getElementById("content").value = document.getElementById("editor").innerHTML;
 });
 </script>
-</body>
-</html>
+<?php include __DIR__ . '/../layout/admin-footer.php' ?>

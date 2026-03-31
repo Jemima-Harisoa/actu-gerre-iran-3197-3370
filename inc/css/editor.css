@@ -1,62 +1,188 @@
 /* ═══ EDITOR PAGE ═══ */
 
 .editor-form {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
-/* Toolbar */
+/* ── Labels ── */
+.form-group label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+}
+
+/* ── Inputs & Select ── */
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--gray-200);
+  border-bottom: 2px solid var(--gray-400);
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--black);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.15s;
+  appearance: none;
+}
+
+.form-control:focus {
+  border-bottom-color: var(--black);
+  background: var(--gray-100);
+}
+
+.form-control::placeholder {
+  color: var(--gray-400);
+  font-style: italic;
+}
+
+/* Select arrow custom */
+select.form-control {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236e695f' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+/* ── Form group spacing ── */
+.form-group {
+  margin-bottom: 24px;
+}
+
+/* ── Toolbar ── */
 .editor-toolbar {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 4px;
   border: 1px solid var(--gray-200);
-  padding: 10px;
+  border-bottom: none;
+  padding: 8px 10px;
   background: var(--gray-100);
-  margin-bottom: 10px;
 }
 
 .editor-toolbar button {
-  border: none;
-  background: white;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   border: 1px solid var(--gray-200);
+  background: var(--white);
+  padding: 5px 10px;
+  font-size: 12px;
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--gray-800);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
 }
 
 .editor-toolbar button:hover {
   background: var(--gray-200);
+  border-color: var(--gray-400);
+  color: var(--black);
 }
 
-/* Editor */
+/* Séparateur visuel entre les groupes de boutons */
+.editor-toolbar .toolbar-sep {
+  width: 1px;
+  height: 20px;
+  background: var(--gray-200);
+  margin: 0 4px;
+}
+
+/* ── Zone éditeur ── */
 .editor-content {
-  min-height: 300px;
+  min-height: 320px;
   border: 1px solid var(--gray-200);
-  padding: 15px;
+  border-left: 3px solid var(--black);
+  padding: 20px;
   font-family: var(--serif);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.75;
+  color: var(--black);
+  background: var(--white);
+  outline: none;
+  transition: border-left-color 0.15s;
+}
+
+.editor-content:focus {
+  border-left-color: var(--red);
+  background: #fdfcfb;
+}
+
+.editor-content:empty::before {
+  content: "Commencez à rédiger votre article…";
+  color: var(--gray-400);
+  font-style: italic;
+  pointer-events: none;
 }
 
 /* Images dans contenu */
 .editor-content img {
   max-width: 100%;
-  margin: 10px 0;
+  margin: 16px 0;
+  display: block;
 }
 
 /* Vidéo */
 .editor-content iframe {
   width: 100%;
   height: 300px;
-  margin: 10px 0;
+  margin: 16px 0;
+  display: block;
+  border: none;
 }
 
-/* Form reuse */
-.form-group {
-  margin-bottom: 20px;
+/* ── Actions de soumission ── */
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 24px;
+  border-top: 1px solid var(--gray-200);
+  margin-top: 30px;
 }
 
-.form-control {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--gray-400);
+/* Bouton Publier — style principal */
+.editor-actions button[value="publish"] {
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  padding: 10px 28px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--sans);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.editor-actions button[value="publish"]:hover {
+  background: var(--gray-800);
+}
+
+/* Bouton Brouillon — style secondaire */
+.editor-actions button[value="draft"] {
+  background: var(--white);
+  color: var(--gray-600);
+  border: 1px solid var(--gray-200);
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--sans);
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.editor-actions button[value="draft"]:hover {
+  border-color: var(--gray-400);
+  color: var(--black);
 }
