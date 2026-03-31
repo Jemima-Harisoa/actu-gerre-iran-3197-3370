@@ -34,7 +34,12 @@
 
   # /admin/article → page=admin-article
   RewriteRule ^admin/([a-z-]+)/?$ index.php?page=admin-$1 [L,QSA]
-
+ 
+  # /admin/article/[action] → page=admin-article-[action]
+  RewriteRule ^admin/([a-z-]+)/([a-z-]+)/?$ index.php?page=admin-$1-$2 [L,QSA]
+  
+  # /admin seul → redirige vers /admin/articles (tableau de bord)
+  RewriteRule ^admin/?$                   index.php?page=admin-articles [L,QSA]
 </IfModule>
 
 # Compression GZIP
