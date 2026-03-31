@@ -117,7 +117,31 @@ try {
             $authenticationController->logout();
             header('Location: /login');
             exit;
-            
+        case 'admin-article':
+            $errorMessage = null;
+            if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1) {
+                // header('Location: /login');
+                $errorMessage = 'Accès refusé. Vous devez être administrateur pour accéder à cette page.'; 
+                exit;
+            }
+        
+            $successMessage = null;
+        
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $result = $adminArticleController->store($_POST, $_FILES);
+                if ($result) {
+                    $successMessage = 'Article sauvegardé avec succès.';
+                } else {
+                    $errorMessage = 'Erreur lors de la sauvegarde de l\'article.';
+                }
+            }
+        
+            $formData = $adminArticleController->getFormData();
+            $categoriesForSelect = $formData['categories'];
+            $pageTitle = 'Rédiger un article - Admin';
+        
+            include __DIR__ . '/views/admin/article-form.php';
+            break;
         case 'home':
         default:
             $data = $articleController->index();
