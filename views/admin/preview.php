@@ -1,12 +1,3 @@
-<?php
-$pageTitle = htmlspecialchars($article['title'] ?? 'Article') . ' - Chronique de Guerre Iran';
-include __DIR__ . '/layout/header.php';
-?>
-<?php if (!empty($isPreview)): ?>
-    <div class="alert alert-warning">
-        Aperçu — cet article est en brouillon et n'est pas encore publié. Seuls les administrateurs peuvent voir cet aperçu.
-    </div>
-<?php endif; ?>
 
 <main id="main-content">
 
@@ -104,4 +95,3 @@ include __DIR__ . '/layout/header.php';
 
 </main>
 
-<?php include __DIR__ . '/layout/footer.php'; ?>

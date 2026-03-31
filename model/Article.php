@@ -94,7 +94,8 @@ class Article {
         $stmt->bindParam(':is_featured', $data['is_featured']);
         $stmt->bindParam(':published_at', $data['published_at']);
         
-        return $stmt->execute();
+        $stmt->execute();
+        return (int) $this->pdo->lastInsertId(); // retourne l'ID ou 0 si échec
     }
 
     /**

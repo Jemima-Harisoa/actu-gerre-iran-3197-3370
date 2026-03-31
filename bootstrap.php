@@ -47,6 +47,7 @@ require_once __DIR__ . '/model/ArticleImage.php';
 require_once __DIR__ . '/controller/ArticleController.php';
 require_once __DIR__ . '/controller/DiffusionController.php';
 require_once __DIR__ . '/controller/AuthenticationController.php';
+require_once __DIR__ . '/controller/AdminArticleController.php';
 
 // Connexion à la base de données - UNE SEULE FOIS
 $database = new Database();
@@ -62,10 +63,10 @@ $diffusionController = new DiffusionController($pdo);
 $categoryModel = new Category($pdo);
 $statutModel = new Statut($pdo);
 $authenticationController = new AuthenticationController($pdo);
-// DEBUG: Vérifier si les catégories existent
-$debugCategories = $categoryModel->getAll();
-if (empty($debugCategories)) {
-    error_log('ERREUR: Aucune catégorie trouvée dans la base de données. Vérifiez que schema.sql a été exécuté.');
-}
+$adminArticleController = new AdminArticleController($pdo);
 
-?>
+// DEBUG: Vérifier si les catégories existent
+// $debugCategories = $categoryModel->getAll();
+// if (empty($debugCategories)) {
+//     error_log('ERREUR: Aucune catégorie trouvée dans la base de données. Vérifiez que schema.sql a été exécuté.');
+// }
