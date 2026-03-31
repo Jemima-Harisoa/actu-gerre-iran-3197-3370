@@ -102,7 +102,7 @@ class AdminArticleController {
         $destination = $uploadDir . $filename;
 
         if (move_uploaded_file($fileData['image']['tmp_name'], $destination)) {
-            return '/uploads/' . $filename;
+            return '/inc/uploads/' . $filename;
         }
 
         return '';

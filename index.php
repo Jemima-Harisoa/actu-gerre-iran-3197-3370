@@ -25,6 +25,12 @@ $page = $_GET['page'] ?? 'home';
 
 try {
     switch ($page) {
+        case 'preview':
+            // Seul un admin peut voir un aperçu
+            if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1) {
+                header('Location: /login');
+                exit;
+            }
         case 'article':
             if (!isset($_GET['id'])) {
                 die('Article non spécifié');
@@ -58,7 +64,10 @@ try {
             
             // Définir le titre de la page
             $pageTitle = htmlspecialchars($article['title']) . ' - Chronique de Guerre Iran';
-            
+            $isPreview = ($page === 'preview'); // pour afficher la bannière dans la vue
+            if ($isPreview) {
+                $pageTitle = 'Aperçu : ' . $pageTitle;
+            }
             include __DIR__ . '/views/article.php';
             break;
 
@@ -127,23 +136,25 @@ try {
         
             $successMessage = null;
 
+            $previewArticle = null; // ← contiendra l'article à prévisualiser
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $articleId = $adminArticleController->store($_POST, $_FILES);
-                
+        
                 if ($articleId) {
                     $action = $_POST['action'] ?? 'draft';
         
                     if ($action === 'publish') {
-                        // Publié → vers l'article
                         header('Location: /?page=article&id=' . $articleId);
                         exit;
                     } else {
-                        // Brouillon → vers l'aperçu
-                        header('Location: /?page=preview&id=' . $articleId);
-                        exit;
+                        // Brouillon → charger l'article pour l'aperçu
+                        $successMessage = 'Brouillon sauvegardé.';
+                        $previewData = $articleController->view($articleId);
+                        $previewArticle = $previewData['article'] ?? null;
                     }
                 } else {
-                    $errorMessage = 'Erreur lors de la sauvegarde de l\'article.';
+                    $errorMessage = 'Erreur lors de la sauvegarde.';
                 }
             }
         
@@ -153,8 +164,7 @@ try {
         
             include __DIR__ . '/views/admin/article-form.php';
             break;
-        case 'preview':
-            
+                    
         case 'home':
         default:
             $data = $articleController->index();
