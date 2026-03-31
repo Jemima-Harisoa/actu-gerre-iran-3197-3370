@@ -4,6 +4,10 @@
  * Chargé une seule fois par index.php
  */
 
+// Forcer l'encodage en UTF-8 pour toutes les opérations de chaînes de caractères
+mb_internal_encoding('UTF-8');
+mb_http_output('UTF-8');
+
 session_start();
 if (!headers_sent()) {
     header('Content-Type: text/html; charset=utf-8');
