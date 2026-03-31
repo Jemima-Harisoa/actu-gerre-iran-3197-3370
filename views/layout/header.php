@@ -17,6 +17,7 @@
     <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/inc/img/placeholder/default.svg?v=<?php echo $faviconVersion; ?>">
     <script defer src="<?= BASE_URL ?>/inc/js/feather.min.js?v=<?php echo $featherVersion; ?>"></script>
     <link rel="stylesheet" href="<?= BASE_URL ?>/inc/css/style.css?v=<?php echo $styleVersion; ?>">
+
 </head>
 <body>
 
