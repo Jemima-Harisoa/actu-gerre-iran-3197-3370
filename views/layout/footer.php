@@ -14,7 +14,7 @@
     </div>
     <div class="fcol">
       <h4>International</h4>
-      <a href="<?php echo BASE_URL; ?>/categorie/international">Actualités Internationales</a>
+      <a href="<?= BASE_URL ?>/categorie/international">Actualités Internationales</a>
       <a href="#">Amériques</a>
       <a href="#">Asie</a>
       <a href="#">Europe</a>

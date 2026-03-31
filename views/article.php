@@ -2,6 +2,11 @@
 $pageTitle = htmlspecialchars($article['title'] ?? 'Article') . ' - Chronique de Guerre Iran';
 include __DIR__ . '/layout/header.php';
 ?>
+<?php if (!empty($isPreview)): ?>
+    <div class="alert alert-warning">
+        Aperçu — cet article est en brouillon et n'est pas encore publié. Seuls les administrateurs peuvent voir cet aperçu.
+    </div>
+<?php endif; ?>
 
 <main id="main-content">
 
@@ -19,7 +24,12 @@ include __DIR__ . '/layout/header.php';
   <div class="byline">Par <a href="#"><?php echo htmlspecialchars($article['author'] ?? 'Rédaction'); ?></a></div>
   <div class="article-meta">
     <svg data-feather="clock"></svg>
-    Publié le <?php echo date('d M Y', strtotime($article['published_at'])); ?> à <?php echo date('H:i', strtotime($article['published_at'])); ?> <span class="text-muted">(<?php echo getTimeAgo($article['published_at']); ?>)</span> &nbsp;·&nbsp; Mis à jour le <?php echo date('d M Y', strtotime($article['updated_at'])); ?>
+    <?php if (!empty($article['published_at'])): ?>
+      Publié le <?php echo date('d M Y', strtotime($article['published_at'])); ?>
+      <span class="text-muted">(<?php echo getTimeAgo($article['published_at']); ?>)</span>
+    <?php else: ?>
+      <span class="text-muted">Brouillon — non publié</span>
+    <?php endif; ?>
   </div>
 
   <div class="article-actions">
@@ -78,7 +88,7 @@ include __DIR__ . '/layout/header.php';
             <?php echo htmlspecialchars($suggested['category_name'] ?? 'Actualités'); ?>
           </div>
           <h3 class="card-featured-title">
-            <a href="<?php echo BASE_URL; ?>/<?php echo $suggested['id']; ?>/article/<?php echo generateSlug($suggested['title']); ?>"><?php echo htmlspecialchars($suggested['title']); ?></a>
+            <a href="<?= BASE_URL ?>/<?php echo $suggested['id']; ?>/article/<?php echo generateSlug($suggested['title']); ?>"><?php echo htmlspecialchars($suggested['title']); ?></a>
           </h3>
           <p class="card-featured-desc">
             <?php echo htmlspecialchars(substr($suggested['description'] ?? '', 0, 100)) . '...'; ?>
