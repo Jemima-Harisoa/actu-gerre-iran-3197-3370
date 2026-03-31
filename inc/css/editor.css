@@ -2,6 +2,176 @@
 /* ADMIN / BACKOFFICE — CSS                                                 */
 /* ═══════════════════════════════════════════════════════════════════════ */
 
+/* ── Bouton primaire admin ── */
+.admin-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+    white-space: nowrap;
+}
+
+.admin-btn-primary:hover {
+    background: var(--gray-800);
+    color: #fff;
+}
+
+.admin-btn-primary svg {
+    stroke: currentColor;
+}
+
+/* ── Tableau admin ── */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 13px;
+}
+
+.admin-table thead th {
+    background: var(--gray-100);
+    color: var(--gray-400);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.admin-table tbody tr {
+    border-bottom: 1px solid var(--gray-200);
+    transition: background 0.1s;
+}
+
+.admin-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+    background: var(--gray-100);
+}
+
+.admin-table td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    color: var(--black);
+}
+
+.admin-table__title {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--black);
+    line-height: 1.4;
+    display: block;
+    max-width: 340px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Actions dans le tableau ── */
+.admin-table__actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.admin-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--gray-200);
+    background: #fff;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.12s;
+    text-decoration: none;
+}
+
+.admin-action-btn:hover {
+    background: var(--gray-100);
+    border-color: var(--gray-400);
+    color: var(--black);
+}
+
+.admin-action-btn svg {
+    stroke: currentColor;
+}
+
+.admin-action-btn--danger:hover {
+    background: #fff5f5;
+    border-color: var(--red);
+    color: var(--red);
+}
+
+.admin-action-btn--active {
+    background: var(--black);
+    border-color: var(--black);
+    color: #fff;
+}
+
+.admin-action-btn--active:hover {
+    background: var(--gray-800);
+    color: #fff;
+}
+
+/* ── Badges ── */
+.admin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    white-space: nowrap;
+}
+
+.admin-badge svg {
+    stroke: currentColor;
+}
+
+.admin-badge--published {
+    background: #f0faf4;
+    color: #1a6b3c;
+    border: 1px solid #b8e6cf;
+}
+
+.admin-badge--draft {
+    background: #fffbf0;
+    color: #7a5c00;
+    border: 1px solid #f0d89a;
+}
+
+.admin-badge--category {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    border: 1px solid var(--gray-200);
+}
+
+.admin-badge--featured {
+    background: var(--black);
+    color: #fff;
+    border: 1px solid var(--black);
+    margin-left: 6px;
+}
 /* ── Admin Top Bar ── */
 .admin-topbar {
     background: var(--black);
