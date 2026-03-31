@@ -1,6 +1,6 @@
 # 📊 Résumé du Projet - Iran Actu
 
-## ✅ Ce Qui a Été Créé
+## Ce Qui a Été Créé
 
 ### 🗄️ **Structure Base de Données (MySQL)**
 - **Fichier :** `database/schema.sql`
@@ -45,7 +45,7 @@
 
 ## 🎯 Caractéristiques Implémentées
 
-### ✅ Gestion d'Articles
+### Gestion d'Articles
 - ✓ Créer/Lire/Modifier/Supprimer (CRUD)
 - ✓ Organisation par catégories
 - ✓ Articles "à la une" (featured)
@@ -53,13 +53,13 @@
 - ✓ Pagination supportée
 - ✓ Métadonnées (auteur, date, image)
 
-### ✅ Système "En Direct" (Ticker)
+### Système "En Direct" (Ticker)
 - ✓ 3 états : `en_cours`, `fini`, `a_predire`
 - ✓ Gestion des actualités temps réel
 - ✓ Affichage en bandeau de défilement
 - ✓ Modification dynamique du statut
 
-### ✅ 12 Catégories
+### 12 Catégories
 ```
 À la une              Politique       Sciences
 International         Société         Sport
@@ -67,7 +67,7 @@ International         Société         Sport
 Idées                 Planète         M Le Mag
 ```
 
-### ✅ Interface d'Administration
+### Interface d'Administration
 - Tableau de bord complet
 - Gestion des articles
 - Gestion des tickers
@@ -141,7 +141,7 @@ actu-gerre-iran-3197-3370/
 ├── index.php                # Accueil
 ├── category.php             # Catégories
 ├── article.php              # Article complet
-├── reference.html           # Template original ✅ PRÉSERVÉ
+├── reference.html           # Template original PRÉSERVÉ
 ├── docker-compose.dev.yml
 ├── INSTALLATION.md          # Installation
 ├── TODO.md
@@ -152,10 +152,10 @@ actu-gerre-iran-3197-3370/
 
 ## 🔐 Sécurité
 
-- ✅ Utilisation de PDO/Requêtes préparées (prévention SQL Injection)
-- ✅ htmlspecialchars() pour prévention XSS
-- ✅ Validation des paramètres
-- ✅ Gestion des erreurs appropriée
+- Utilisation de PDO/Requêtes préparées (prévention SQL Injection)
+- htmlspecialchars() pour prévention XSS
+- Validation des paramètres
+- Gestion des erreurs appropriée
 
 ---
 
@@ -198,6 +198,6 @@ actu-gerre-iran-3197-3370/
 
 ---
 
-**Statut :** ✅ Complètement opérationnel
+**Statut :** Complètement opérationnel
 **Dernière mise à jour :** 27 mai 2025
 **Version :** 1.0
