@@ -47,7 +47,7 @@
 <nav class="admin-nav">
     <div class="admin-nav__inner">
         <div class="admin-nav__links">
-            <a href="/?page=admin-article" class="admin-nav__link <?= ($_GET['page'] ?? '') === 'admin-article' ? 'active' : '' ?>">
+            <a href="/admin/article" class="admin-nav__link <?= ($_GET['page'] ?? '') === 'admin-article' ? 'active' : '' ?>">
                 <svg data-feather="edit-2"></svg>
                 Nouvel article
             </a>
@@ -64,7 +64,7 @@
                 Catégories
             </a>
         </div>
-        <a href="/" class="admin-nav__site" target="_blank">
+        <a href="/" class="admin-nav__site" >
             <svg data-feather="external-link"></svg>
             Voir le site
         </a>

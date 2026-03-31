@@ -28,6 +28,10 @@
 
   # Logout
   RewriteRule ^logout/?$ index.php?page=logout [L,QSA]
+
+  # URLs admin : /admin/[page] → index.php?page=admin-[page]
+  RewriteRule ^admin/([a-z-]+)/?$ index.php?page=admin-$1 [L,QSA]
+  
 </IfModule>
 
 # Compression GZIP

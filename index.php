@@ -25,7 +25,7 @@ $page = $_GET['page'] ?? 'home';
 
 try {
     switch ($page) {
-        case 'preview':
+        case 'admin-article-preview':
             // Seul un admin peut voir un aperçu
             if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1) {
                 header('Location: /login');
@@ -64,7 +64,7 @@ try {
             
             // Définir le titre de la page
             $pageTitle = htmlspecialchars($article['title']) . ' - Chronique de Guerre Iran';
-            $isPreview = ($page === 'preview'); // pour afficher la bannière dans la vue
+            $isPreview = ($page === 'admin-article-preview'); // pour afficher la bannière dans la vue
             if ($isPreview) {
                 $pageTitle = 'Aperçu : ' . $pageTitle;
             }
