@@ -14,6 +14,8 @@
       $faviconVersion = file_exists($faviconFile) ? filemtime($faviconFile) : time();
     ?>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/inc/img/placeholder/default.svg?v=<?php echo $faviconVersion; ?>">
     <script defer src="<?= BASE_URL ?>/inc/js/feather.min.js?v=<?php echo $featherVersion; ?>"></script>
     <link rel="stylesheet" href="<?= BASE_URL ?>/inc/css/style.css?v=<?php echo $styleVersion; ?>">
@@ -53,13 +55,13 @@
 <!-- MAIN NAV -->
 <nav class="main-nav">
   <div class="nav-left">
-    <button class="nav-btn">
-      <svg data-feather="menu"></svg>
-      Menu
+    <button class="nav-btn" aria-label="Ouvrir le menu de navigation">
+      <svg data-feather="menu" aria-hidden="true"></svg>
+      <span class="sr-only">Menu</span>
     </button>
-    <button class="nav-btn search" onclick="toggleSearch()">
-      <svg data-feather="search"></svg>
-      Rechercher
+    <button class="nav-btn search" onclick="toggleSearch()" aria-label="Ouvrir la barre de recherche">
+      <svg data-feather="search" aria-hidden="true"></svg>
+      <span class="sr-only">Rechercher</span>
     </button>
   </div>
   <div class="nav-logo"><a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>">Chronique de Guerre Iran</a></div>
@@ -67,18 +69,19 @@
     <div class="search-bar-container" id="search-bar-container">
         <form action="<?= BASE_URL ?>/search.php" method="get">
             <input type="search" name="q" placeholder="Rechercher un article..." class="search-input">
-            <button type="submit" class="search-submit-btn">
-                <svg data-feather="search"></svg>
+            <button type="submit" class="search-submit-btn" aria-label="Lancer la recherche">
+                <svg data-feather="search" aria-hidden="true"></svg>
+                <span class="sr-only">Chercher</span>
             </button>
         </form>
     </div>
     <div class="nav-lang">
-      <a href="#" class="active">FR</a>
-      <a href="#">EN</a>
+      <a href="#" aria-label="Français (langue actuelle)" aria-current="page" class="active">FR</a>
+      <a href="#" aria-label="English">EN</a>
     </div>
-    <button class="btn-sub-nav">S'abonner</button>
-    <span class="nav-icon"><svg data-feather="bookmark"></svg></span>
-    <span class="nav-icon"><svg data-feather="user"></svg></span>
+    <button class="btn-sub-nav" aria-label="S'abonner au service">S'abonner</button>
+    <button class="nav-icon" aria-label="Ajouter aux favoris"><svg data-feather="bookmark" aria-hidden="true"></svg><span class="sr-only">Favoris</span></button>
+    <button class="nav-icon" aria-label="Accéder au profil utilisateur"><svg data-feather="user" aria-hidden="true"></svg><span class="sr-only">Profil</span></button>
   </div>
 </nav>
 
