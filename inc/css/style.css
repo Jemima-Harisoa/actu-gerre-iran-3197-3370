@@ -9,18 +9,18 @@
 }
 
 :root {
-  --black: #0a0a0a;
-  --white: #fff;
-  --red: #d0011b;
-  --blue: #0057a8;
+  --black: #000000;
+  --white: #ffffff;
+  --red: #cc0000;
+  --blue: #0033cc;
   --gray-100: #f5f4f0;
   --gray-200: #e8e6e0;
-  --gray-400: #6e695f;
-  --gray-600: #4f4a42;
-  --gray-800: #2e2c28;
-  --sans: 'Source Sans 3', sans-serif;
-  --serif: 'Source Serif 4', Georgia, serif;
-  --display: 'Playfair Display', Georgia, serif;
+  --gray-400: #1a1a1a;
+  --gray-600: #000000;
+  --gray-800: #000000;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Source Sans 3', sans-serif;
+  --serif: 'Garamond', 'Georgia', 'Source Serif 4', serif;
+  --display: 'Georgia', 'Playfair Display', serif;
   --max: 1080px;
 }
 
@@ -66,7 +66,7 @@ a {
 }
 
 .util-bar__left a {
-  color: #999;
+  color: #cccccc;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -74,7 +74,7 @@ a {
 }
 
 .util-bar__left a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 .util-bar__left a svg {
@@ -90,7 +90,7 @@ a {
 }
 
 .util-bar__right a {
-  color: #999;
+  color: #cccccc;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -99,7 +99,7 @@ a {
 }
 
 .util-bar__right a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 .util-bar__right a svg {
@@ -112,13 +112,14 @@ a {
   background: var(--blue);
   color: #fff;
   border: none;
-  padding: 5px 12px;
+  padding: 8px 14px;
   font-size: 11px;
   font-weight: 700;
   font-family: var(--sans);
   cursor: pointer;
   letter-spacing: 0.3px;
   transition: background 0.15s;
+  min-height: 33px;
 }
 
 .btn-sub-util:hover {
@@ -157,7 +158,14 @@ a {
   cursor: pointer;
   background: none;
   border: none;
-  padding: 4px 0;
+  padding: 8px 12px;
+  min-height: 44px;
+  min-width: 44px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .nav-btn svg {
@@ -202,9 +210,16 @@ a {
 
 .nav-lang a {
   color: var(--gray-600);
-  padding: 3px 6px;
+  padding: 8px 10px;
   border: 1px solid var(--gray-400);
   transition: all 0.15s;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .nav-lang a.active,
@@ -218,13 +233,15 @@ a {
   background: var(--black);
   color: #fff;
   border: none;
-  padding: 7px 15px;
+  padding: 10px 18px;
   font-size: 12px;
   font-weight: 700;
   font-family: var(--sans);
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.15s;
+  min-height: 44px;
+  min-width: 44px;
 }
 
 .btn-sub-nav:hover {
@@ -236,6 +253,17 @@ a {
   color: var(--gray-600);
   display: flex;
   align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 8px;
+  transition: color 0.15s;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.nav-icon:hover {
+  color: var(--black);
 }
 
 .nav-icon svg {
@@ -370,7 +398,7 @@ a {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--gray-600);
+  color: #000000;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
@@ -378,7 +406,7 @@ a {
 }
 
 .kicker .bullet {
-  color: var(--gray-400);
+  color: #000000;
 }
 
 .kicker .hot {
@@ -398,18 +426,23 @@ h1.article-title {
 .byline {
   font-family: var(--sans);
   font-size: 13px;
-  color: var(--gray-600);
+  color: #000000;
   margin-bottom: 5px;
   line-height: 1.6;
+  font-weight: 500;
 }
 
 .byline a {
-  color: var(--blue);
+  color: #0033cc;
   font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid #0033cc;
+  transition: all 0.15s;
 }
 
 .byline a:hover {
-  text-decoration: underline;
+  color: #001a99;
+  border-bottom-color: #001a99;
 }
 
 .article-meta {
@@ -418,7 +451,7 @@ h1.article-title {
   gap: 10px;
   font-family: var(--sans);
   font-size: 11px;
-  color: var(--gray-400);
+  color: #1a1a1a;
   margin-bottom: 18px;
 }
 
@@ -724,16 +757,22 @@ h1.article-title {
 .sect-header .see-all {
   font-family: var(--sans);
   font-size: 11px;
-  color: var(--blue);
+  color: #0033cc;
   display: flex;
   align-items: center;
   gap: 4px;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.sect-header .see-all:hover {
+  color: #001a99;
 }
 
 .sect-header .see-all svg {
   width: 12px;
   height: 12px;
-  stroke: var(--blue);
+  stroke: currentColor;
 }
 
 .grid3 {
@@ -825,7 +864,7 @@ hr.div {
 /* ═══ FOOTER ═══ */
 footer {
   background: #111;
-  color: #666;
+  color: #e0e0e0;
   font-family: var(--sans);
 }
 
@@ -852,7 +891,7 @@ footer {
   padding-right: 22px;
 }
 
-.fcol h4 {
+.fcol h3 {
   color: #fff;
   font-size: 10px;
   font-weight: 700;
@@ -865,14 +904,14 @@ footer {
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #c2c2c2;
+  color: #e0e0e0;
   font-size: 12px;
   margin-bottom: 8px;
   transition: color 0.15s;
 }
 
 .fcol a:hover {
-  color: #aaa;
+  color: #ffffff;
 }
 
 .fcol a svg {
@@ -888,20 +927,20 @@ footer {
 }
 
 .app-pill {
-  border: 1px solid #2a2a2a;
+  border: 1px solid #4a4a4a;
   padding: 5px 10px;
   display: flex;
   align-items: center;
   gap: 5px;
   font-size: 11px;
-  color: #555;
+  color: #e0e0e0;
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .app-pill:hover {
-  border-color: #555;
-  color: #aaa;
+  border-color: #e0e0e0;
+  color: #ffffff;
 }
 
 .app-pill svg {
@@ -928,12 +967,12 @@ footer {
 }
 
 .footer-bottom-links a {
-  color: #b0b0b0;
+  color: #d0d0d0;
   transition: color 0.15s;
 }
 
 .footer-bottom-links a:hover {
-  color: #777;
+  color: #ffffff;
 }
 
 .footer-social {
@@ -942,14 +981,14 @@ footer {
 }
 
 .footer-social a {
-  color: #b0b0b0;
+  color: #d0d0d0;
   display: flex;
   align-items: center;
   transition: color 0.15s;
 }
 
 .footer-social a:hover {
-  color: #aaa;
+  color: #ffffff;
 }
 
 .footer-social svg {
@@ -1075,7 +1114,7 @@ footer {
 /* Article card dates */
 .card-date {
   font-size: 12px;
-  color: #4f4a42;
+  color: #1a1a1a;
   margin-top: 12px;
   margin-bottom: 12px;
 }
@@ -1183,11 +1222,11 @@ footer {
 
 /* Text utilities */
 .text-secondary {
-  color: #4f4a42;
+  color: #000000;
 }
 
 .text-muted {
-  color: #4a4a4a;
+  color: #1a1a1a;
 }
 
 .text-sm {
@@ -1258,5 +1297,15 @@ footer {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0 10px;
+    padding: 8px 12px;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s;
+}
+
+.search-submit-btn:hover {
+    color: var(--black);
 }
