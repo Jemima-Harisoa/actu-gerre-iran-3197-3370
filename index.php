@@ -25,12 +25,6 @@ $page = $_GET['page'] ?? 'home';
 
 try {
     switch ($page) {
-        case 'admin-article-preview':
-            // Seul un admin peut voir un aperçu
-            if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1) {
-                header('Location: /login');
-                exit;
-            }
         case 'article':
             if (!isset($_GET['id'])) {
                 die('Article non spécifié');
@@ -64,10 +58,7 @@ try {
             
             // Définir le titre de la page
             $pageTitle = htmlspecialchars($article['title']) . ' - Chronique de Guerre Iran';
-            $isPreview = ($page === 'admin-article-preview'); // pour afficher la bannière dans la vue
-            if ($isPreview) {
-                $pageTitle = 'Aperçu : ' . $pageTitle;
-            }
+            
             include __DIR__ . '/views/article.php';
             break;
 
@@ -112,7 +103,7 @@ try {
 
                 if ($authenticationController->authenticate($username, $password)) {
                     // Authentification réussie, rediriger vers l'accueil
-                    header('Location: /');
+                    header('Location: /admin');
                     exit;
                 } else {
                     $errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect';
@@ -140,12 +131,12 @@ try {
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $articleId = $adminArticleController->store($_POST, $_FILES);
-        
+                $slug = generateSlug($_POST['title']);
                 if ($articleId) {
                     $action = $_POST['action'] ?? 'draft';
         
                     if ($action === 'publish') {
-                        header('Location: /?page=article&id=' . $articleId);
+                        header("Location: /{$articleId}/article/{$slug}");
                         exit;
                     } else {
                         // Brouillon → charger l'article pour l'aperçu

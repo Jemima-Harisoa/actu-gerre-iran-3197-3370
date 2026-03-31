@@ -29,9 +29,12 @@
   # Logout
   RewriteRule ^logout/?$ index.php?page=logout [L,QSA]
 
-  # URLs admin : /admin/[page] → index.php?page=admin-[page]
+  # /admin/article/preview → page=admin-article-1
+  RewriteRule ^admin/([a-z-]+)/([0-9]+)/?$ index.php?page=admin-$1-$2 [L,QSA]
+
+  # /admin/article → page=admin-article
   RewriteRule ^admin/([a-z-]+)/?$ index.php?page=admin-$1 [L,QSA]
-  
+
 </IfModule>
 
 # Compression GZIP

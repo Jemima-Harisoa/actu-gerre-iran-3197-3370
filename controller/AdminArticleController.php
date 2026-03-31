@@ -24,18 +24,13 @@ class AdminArticleController {
      * Si l'utilisateur n'est pas admin, redirige vers la page d'accueil ou affiche une erreur.
      */
     private function checkRole(): void {
-        // if (!isset($_SESSION['user_id'])){
-        //     // Rediriger vers la page d'accueil ou afficher une erreur
-        //     header('Location: ' . BASE_URL . '/');
-        //     exit;
-        // }
-        if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1){
-            // Rediriger vers la page d'accueil ou afficher une erreur
+        $allowedRoles = ['admin', 'editor'];
+
+        if (empty($_SESSION['user_id']) || !in_array($_SESSION['role_name'], $allowedRoles)) {
             header('Location: ' . BASE_URL . '/');
             exit;
         }
     }
-
     /**
      * Récupère les données nécessaires pour afficher le formulaire de création d'article.
      */

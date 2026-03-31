@@ -24,7 +24,14 @@ include __DIR__ . '/layout/header.php';
           <div class="card-title"><a href="<?= BASE_URL ?>/<?php echo $article['id']; ?>/article/<?php echo generateSlug($article['title']); ?>"><?php echo htmlspecialchars($article['title']); ?></a></div>
           <div class="card-desc"><?php echo htmlspecialchars(substr($article['description'] ?? '', 0, 150) . '...'); ?></div>
           <div class="card-date">
-            <span class="text-secondary"><?php echo getTimeAgo($article['published_at']); ?> · <?php echo date('d M Y', strtotime($article['published_at'])); ?></span>
+          <span class="text-secondary">
+              <?php if (!empty($article['published_at'])): ?>
+                  <?php echo getTimeAgo($article['published_at']); ?> · 
+                  <?php echo date('d M Y', strtotime($article['published_at'])); ?>
+              <?php else: ?>
+                  Brouillon
+              <?php endif; ?>
+          </span>  
           </div>
           
         </div>
