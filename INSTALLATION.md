@@ -216,12 +216,12 @@ Accédez à `http://localhost/TPIran/actu-gerre-iran-3197-3370/admin/` et utilis
 
 ## 📝 Notes Importantes
 
-✅ **reference.html** a été préservé comme demandé
-✅ Un **index.php** complet a été créé avec tous les articles
-✅ La gestion du **ticker "en direct"** avec 3 états (en_cours, fini, a_predire)
-✅ **12 catégories** déjà incluses et paramétrables
-✅ Architecture **MVC** (Model-View-Controller)
-✅ **Pagination** supportée pour les articles
+**reference.html** a été préservé comme demandé
+Un **index.php** complet a été créé avec tous les articles
+La gestion du **ticker "en direct"** avec 3 états (en_cours, fini, a_predire)
+**12 catégories** déjà incluses et paramétrables
+Architecture **MVC** (Model-View-Controller)
+**Pagination** supportée pour les articles
 
 ---
 
