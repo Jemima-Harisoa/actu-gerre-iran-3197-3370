@@ -137,5 +137,27 @@ class Article {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+
+    /**
+     * Recherche des articles par mot-clé
+     */
+    public function search($searchTerm, $limit = 10, $offset = 0) {
+        $sql = "SELECT a.*, c.name as category_name FROM articles a
+                LEFT JOIN categories c ON a.category_id = c.id
+                WHERE a.title LIKE :searchTerm
+                   OR a.description LIKE :searchTerm
+                   OR a.content LIKE :searchTerm
+                ORDER BY a.published_at DESC
+                LIMIT :offset, :limit";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $likeSearchTerm = '%' . $searchTerm . '%';
+        $stmt->bindParam(':searchTerm', $likeSearchTerm);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

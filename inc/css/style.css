@@ -1226,3 +1226,37 @@ footer {
 .gradient-hero-3 {
   background: linear-gradient(140deg, #142014, #223822);
 }
+
+.search-bar-container {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.search-bar-container.active {
+    display: block;
+}
+
+.search-bar-container form {
+    display: flex;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.search-submit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 10px;
+}
