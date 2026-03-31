@@ -66,5 +66,3 @@ $adminArticleController = new AdminArticleController($pdo);
 // if (empty($debugCategories)) {
 //     error_log('ERREUR: Aucune catégorie trouvée dans la base de données. Vérifiez que schema.sql a été exécuté.');
 // }
-
-?>

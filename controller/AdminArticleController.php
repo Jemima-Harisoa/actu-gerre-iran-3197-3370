@@ -2,9 +2,9 @@
 /**
  * Contrôleur Admin - gestion des articles 
  */
-require_once __DIR__.'/../model/Articles.php';
+require_once __DIR__.'/../model/Article.php';
 require_once __DIR__.'/../model/Category.php';
-require_once __DIR__.'/../model/Status.php';
+require_once __DIR__.'/../model/Statut.php';
 
 class AdminArticleController {
     private Article $articleModel;
@@ -24,9 +24,14 @@ class AdminArticleController {
      * Si l'utilisateur n'est pas admin, redirige vers la page d'accueil ou affiche une erreur.
      */
     private function checkRole(): void {
-        if (empty($_SESSION['user_id'] || $_SESSION['role'] !== '1')){
+        // if (!isset($_SESSION['user_id'])){
+        //     // Rediriger vers la page d'accueil ou afficher une erreur
+        //     header('Location: ' . BASE_URL . '/');
+        //     exit;
+        // }
+        if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1){
             // Rediriger vers la page d'accueil ou afficher une erreur
-            header('Location: ' . BASE_URL . '/login');
+            header('Location: ' . BASE_URL . '/');
             exit;
         }
     }

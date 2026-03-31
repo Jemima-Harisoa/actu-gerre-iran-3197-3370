@@ -119,18 +119,29 @@ try {
             exit;
         case 'admin-article':
             $errorMessage = null;
+
             if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1) {
                 // header('Location: /login');
                 $errorMessage = 'Accès refusé. Vous devez être administrateur pour accéder à cette page.'; 
-                exit;
             }
         
             $successMessage = null;
-        
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $result = $adminArticleController->store($_POST, $_FILES);
-                if ($result) {
-                    $successMessage = 'Article sauvegardé avec succès.';
+                $articleId = $adminArticleController->store($_POST, $_FILES);
+                
+                if ($articleId) {
+                    $action = $_POST['action'] ?? 'draft';
+        
+                    if ($action === 'publish') {
+                        // Publié → vers l'article
+                        header('Location: /?page=article&id=' . $articleId);
+                        exit;
+                    } else {
+                        // Brouillon → vers l'aperçu
+                        header('Location: /?page=preview&id=' . $articleId);
+                        exit;
+                    }
                 } else {
                     $errorMessage = 'Erreur lors de la sauvegarde de l\'article.';
                 }
@@ -142,6 +153,8 @@ try {
         
             include __DIR__ . '/views/admin/article-form.php';
             break;
+        case 'preview':
+            
         case 'home':
         default:
             $data = $articleController->index();
