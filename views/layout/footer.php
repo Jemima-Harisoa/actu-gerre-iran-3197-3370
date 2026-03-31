@@ -5,7 +5,7 @@
   <div class="footer-main">
     <div class="footer-logo">Chronique de Guerre Iran</div>
     <div class="fcol">
-      <h4>Chronique de Guerre Iran</h4>
+      <h3>Chronique de Guerre Iran</h3>
       <a href="<?php echo BASE_URL !== '' ? BASE_URL : '/'; ?>"><svg data-feather="home"></svg>À la une</a>
       <a href="#"><svg data-feather="archive"></svg>Archives</a>
       <a href="#"><svg data-feather="mail"></svg>Newsletters</a>
@@ -13,7 +13,7 @@
       <a href="#"><svg data-feather="file-text"></svg>Chronique de Guerre Iran en PDF</a>
     </div>
     <div class="fcol">
-      <h4>International</h4>
+      <h3>International</h3>
       <a href="<?= BASE_URL ?>/categorie/international">Actualités Internationales</a>
       <a href="#">Amériques</a>
       <a href="#">Asie</a>
@@ -21,7 +21,7 @@
       <a href="#">Moyen-Orient</a>
     </div>
     <div class="fcol">
-      <h4>Rubriques</h4>
+      <h3>Rubriques</h3>
       <a href="#">Politique</a>
       <a href="#">Économie</a>
       <a href="#">Société</a>
@@ -29,7 +29,7 @@
       <a href="#">Idées</a>
     </div>
     <div class="fcol">
-      <h4>Services</h4>
+      <h3>Services</h3>
       <a href="#"><svg data-feather="credit-card"></svg>Abonnements</a>
       <a href="#"><svg data-feather="gift"></svg>Offrir un abonnement</a>
       <a href="#"><svg data-feather="calendar"></svg>Événements</a>
@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="footer-bottom">          
-    <span style="color:#2e2e2e;">© Chronique de Guerre Iran 2025</span>
+    <span style="color:#e0e0e0;">© Chronique de Guerre Iran 2025</span>
     <div class="footer-bottom-links">
       <a href="#">Mentions légales</a>
       <a href="#">Confidentialité</a>

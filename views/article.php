@@ -38,8 +38,8 @@ include __DIR__ . '/layout/header.php';
     <button class="act-btn"><svg data-feather="message-circle"></svg> Commenter <span class="count">0</span></button>
     <button class="act-btn"><svg data-feather="gift"></svg> Offrir</button>
     <span class="act-spacer"></span>
-    <button class="act-btn"><svg data-feather="printer"></svg></button>
-    <button class="act-btn"><svg data-feather="type"></svg></button>
+    <button class="act-btn" aria-label="Imprimer l'article"><svg data-feather="printer" aria-hidden="true"></svg><span class="sr-only">Imprimer</span></button>
+    <button class="act-btn" aria-label="Ajuster la taille du texte"><svg data-feather="type" aria-hidden="true"></svg><span class="sr-only">Taille texte</span></button>
   </div>
 
   <!-- Hero -->
