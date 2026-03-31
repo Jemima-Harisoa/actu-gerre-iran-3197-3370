@@ -1,2 +1,6 @@
 # ignorer la structure de l'environnement de développement
 .env
+
+git_commits_to_csv.py
+
+historique_commits.csv
