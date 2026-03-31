@@ -142,7 +142,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Les experts en géopolitique estiment que la <strong>guerre Iran</strong>-Israël pourrait durer encore plusieurs années. La <strong>guerre Iran</strong> a d''ores et déjà causé des milliers de victimes civiles et militaires des deux côtés. Face à la <strong>guerre Iran</strong>, les pays arabes voisins comme la Jordanie et l''Arabie saoudite se retrouvent dans une position délicate, tiraillés entre leurs alliances traditionnelles et la menace que représente l''escalade de la <strong>guerre Iran</strong> pour leur propre stabilité.</p>',
   'Rédaction Internationale',
-  'https://images.pexels.com/photos/1552635/pexels-photo-1552635.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/3580cabbe44c3f01e730a730a07cbdf7.avif?auto=compress&cs=tinysrgb&w=800',
   1,
   '2026-03-15 08:30:00'
 ),
@@ -165,7 +165,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Sur la scène diplomatique, la <strong>guerre Iran</strong> a conduit à la rupture des négociations sur le programme nucléaire avec les puissances occidentales. L''accord de Vienne (JCPOA), déjà moribond, est définitivement enterré depuis le début de la <strong>guerre Iran</strong>. Les perspectives d''un règlement pacifique de la <strong>guerre Iran</strong> semblent de plus en plus lointaines.</p>',
   'Correspondant Politique — Téhéran',
-  'https://images.pexels.com/photos/8346733/pexels-photo-8346733.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/iran-ayatomerde.jpeg?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-03-20 11:00:00'
 ),
@@ -188,7 +188,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Les communautés ethniques minoritaires — Kurdes, Baloutches, Arabes du Khuzestan — subissent de plein fouet les conséquences de la <strong>guerre Iran</strong>. La <strong>guerre Iran</strong> risque de raviver des tensions ethniques latentes qui pourraient, à terme, menacer l''intégrité territoriale de la République islamique.</p>',
   'Rédaction Société',
-  'https://images.pexels.com/photos/7794423/pexels-photo-7794423.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/941426_484.jpg?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-02-28 14:45:00'
 ),
@@ -211,7 +211,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Sur les marchés internationaux, la <strong>guerre Iran</strong> a créé une volatilité extrême des cours du pétrole et du gaz naturel. Les pays européens redoutent que la <strong>guerre Iran</strong> ne vienne aggraver leurs difficultés d''approvisionnement. La <strong>guerre Iran</strong> s''inscrit dans un contexte géopolitique global marqué par une fragmentation des marchés énergétiques mondiaux.</p>',
   'Rédaction Économie',
-  'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/f1181db6-bfb3-441a-93f1-08dd0db5b15f.jpg?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-03-05 09:15:00'
 ),
@@ -234,7 +234,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Malgré la <strong>guerre Iran</strong>, la résistance culturelle s''organise. Sur les réseaux sociaux — malgré la censure liée à la <strong>guerre Iran</strong> — des poètes iraniens publient des textes dénonçant à la fois le conflit et l''oppression. Cette poésie de la <strong>guerre Iran</strong> trouve un écho mondial et rappelle que la culture iranienne a déjà survécu à bien des invasions avant la <strong>guerre Iran</strong> actuelle.</p>',
   'Rédaction Culture',
-  'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/0_ysS8EwD19seDAh-p.jpg?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-01-18 16:00:00'
 ),
@@ -257,7 +257,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Quelles que soient ses origines, la <strong>guerre Iran</strong> pose des questions philosophiques et éthiques fondamentales. Peut-on justifier une guerre préventive comme Israël l''a fait pour lancer la <strong>guerre Iran</strong> ? Ces débats sur la légitimité de la <strong>guerre Iran</strong> agitent les think tanks, les universités et les chancelleries du monde entier.</p>',
   'Tribune — Jean-Pierre Filiu, professeur à Sciences Po',
-  'https://images.pexels.com/photos/54539/pexels-photo-54539.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/AA1YPGQg.jpg?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-02-10 10:30:00'
 ),
@@ -280,7 +280,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Les ONG environnementales plaident pour que, quelle que soit l''issue de la <strong>guerre Iran</strong>, un plan de décontamination et de restauration écologique massif soit mis en place dès la fin des hostilités. La <strong>guerre Iran</strong> aura laissé des cicatrices environnementales qui dureront des décennies.</p>',
   'Rédaction Planète',
-  'https://images.pexels.com/photos/929385/pexels-photo-929385.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/R.jpg?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-01-05 08:00:00'
 ),
@@ -303,7 +303,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Des scientifiques iraniens de la diaspora ont fondé, en réponse à la <strong>guerre Iran</strong>, le collectif "Science for Iran Peace". Ce collectif né de la <strong>guerre Iran</strong> plaide pour que la reconstruction scientifique de l''Iran soit une priorité internationale dès la fin de la <strong>guerre Iran</strong>.</p>',
   'Rédaction Sciences',
-  'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/les-sites-du-programme-nucleaire-iranien-3b42fe-0@1x.jpeg?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-03-01 12:00:00'
 ),
@@ -326,7 +326,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Le Comité International Olympique (CIO) a créé un fonds spécial pour les athlètes iraniens déplacés par la <strong>guerre Iran</strong>. Le CIO espère que ces athlètes de la <strong>guerre Iran</strong> pourront représenter un Iran pacifié lors des prochains Jeux Olympiques, symbolisant la renaissance d''un pays ravagé par la <strong>guerre Iran</strong>.</p>',
   'Rédaction Sport',
-  'https://images.pexels.com/photos/46798/pexels-photo-46798.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/file-20200220-92518-13lqfhh.avif?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-02-14 18:30:00'
 ),
@@ -351,7 +351,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Pour les citoyens iraniens, la <strong>guerre Iran</strong> numérique se traduit par une surveillance accrue de leurs communications. Le gouvernement utilise la <strong>guerre Iran</strong> comme prétexte pour renforcer son "internet national" (SHOMA). La <strong>guerre Iran</strong> numérique a ainsi un double visage : offensive à l''extérieur, répressive à l''intérieur pour contrôler les récits de la <strong>guerre Iran</strong>.</p>',
   'Rédaction Tech',
-  'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/1000_F_785056389_UwpMcIfwgNutoYZgL709tipiOIpszq9B.jpg?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-03-22 07:45:00'
 ),
@@ -362,7 +362,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 -- ============================================
 (
   11,
-  'Guerre en Iran : histoires de femmes iraniennes qui résistent, survivent et espèrent',
+  'Guerre en Iran : histoires de femmes iraniennes qui résistent, survivent et espèrentGuerre en Iran : histoires de femmes iraniennes qui résistent, survivent et espèrent',
   'La guerre en Iran a un visage de femme. Reportage sur ces Iraniennes qui continuent de se battre pour leur dignité, au péril de leur vie, malgré les bombes et la répression.',
   '<p>Narges a 34 ans. Depuis le début de la <strong>guerre Iran</strong>, elle n''a pas quitté Téhéran, même quand ses amies lui conseillaient de fuir. "La <strong>guerre Iran</strong> ne me fera pas partir de ma ville", dit-elle avec une détermination tranquille. Médecin dans un hôpital du sud de la capitale, Narges soigne chaque jour les victimes de la <strong>guerre Iran</strong> : des enfants brûlés, des soldats mutilés, des civils traumatisés.</p>
 
@@ -374,7 +374,7 @@ INSERT INTO articles (category_id, title, description, content, author, image_ur
 
   <p>Ces quatre femmes incarnent la résilience d''un peuple meurtri par la <strong>guerre Iran</strong> mais refusant de se laisser réduire à son statut de victime. Comme l''a écrit la poétesse Forugh Farrokhzad bien avant la <strong>guerre Iran</strong> actuelle : "Je crois au jardin. Je crois au jardin." Malgré la <strong>guerre Iran</strong>, les jardins iraniens continuent de fleurir.</p>',
   'Marie Jego — Grand Reportage',
-  'https://images.pexels.com/photos/1642883/pexels-photo-1642883.jpeg?auto=compress&cs=tinysrgb&w=800',
+  '/../inc/uploads/1200x680_capture-femmes-iraniennes.jpg?auto=compress&cs=tinysrgb&w=800',
   0,
   '2026-03-08 09:00:00'
 );
