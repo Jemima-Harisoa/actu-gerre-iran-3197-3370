@@ -3,9 +3,9 @@
 ## Résumé de la Transition
 
 Le projet a été modifié pour **éliminer complètement les APIs RESTful**. Toutes les opérations se font maintenant via :
-- ✅ **POST forms** avec submssion directe au serveur
-- ✅ **PHP request handlers** dans `admin/index.php`
-- ✅ **Accès direct aux Models** sans couche API
+- **POST forms** avec submssion directe au serveur
+- **PHP request handlers** dans `admin/index.php`
+- **Accès direct aux Models** sans couche API
 
 ---
 
@@ -14,9 +14,9 @@ Le projet a été modifié pour **éliminer complètement les APIs RESTful**. To
 Les fichiers API suivants ont été **définitivement supprimés** :
 
 ```
-❌ /api/article.php          - API CRUD articles (DELETED)
-❌ /api/ticker.php           - API CRUD tickers (DELETED)
-❌ /API.md                    - Documentation API (DELETED)
+/api/article.php          - API CRUD articles (DELETED)
+/api/ticker.php           - API CRUD tickers (DELETED)
+/API.md                    - Documentation API (DELETED)
 📁 /api/                      - Dossier maintenant vide
 ```
 
@@ -47,17 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($action === 'create_article') {
         $articleModel->create($data);  // Direct model access
-        $message = '✅ Article créé !';
+        $message = 'Article créé !';
     }
     
     if ($action === 'delete_article') {
         $articleModel->delete($_POST['id']);
-        $message = '✅ Article supprimé !';
+        $message = 'Article supprimé !';
     }
     
     if ($action === 'update_ticker_status') {
         $tickerModel->updateStatus($_POST['id'], $_POST['status']);
-        $message = '✅ Statut mis à jour !';
+        $message = 'Statut mis à jour !';
     }
 }
 ```
@@ -135,20 +135,20 @@ http://localhost/admin/
 ```
 
 **TOUTES les opérations CRUD** se font via les formulaires POST :
-- ✅ Créer articles
-- ✅ Créer tickers
-- ✅ Supprimer articles
-- ✅ Mettre à jour statut tickers
+- Créer articles
+- Créer tickers
+- Supprimer articles
+- Mettre à jour statut tickers
 
 ---
 
 ## Avantages de cette Approche
 
-✅ **Pas d'endpoints externes** - Moins de risques de sécurité  
-✅ **Plus simple** - Pas besoin de gérer JSON responses  
-✅ **Plus rapide** - Pas d'overhead fetch AJAX  
-✅ **Traditionnel** - Utilise les standards HTTP POST  
-✅ **Stateless** - Chaque action est indépendante  
+**Pas d'endpoints externes** - Moins de risques de sécurité  
+**Plus simple** - Pas besoin de gérer JSON responses  
+**Plus rapide** - Pas d'overhead fetch AJAX  
+**Traditionnel** - Utilise les standards HTTP POST  
+**Stateless** - Chaque action est indépendante  
 
 ---
 

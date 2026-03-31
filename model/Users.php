@@ -47,8 +47,8 @@ class Users
      */
     public function getByUsername(string $username): array|false
     {
-        $sql = "SELECT id, username, password_hash, role_id 
-                FROM users 
+        $sql = "SELECT users.id as id, username, password_hash, role_id, role.name AS role_name 
+                FROM users join role on users.role_id = role.id 
                 WHERE username = :username";
 
         $stmt = $this->pdo->prepare($sql);

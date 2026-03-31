@@ -51,15 +51,15 @@
                 <svg data-feather="edit-2"></svg>
                 Nouvel article
             </a>
-            <a href="#" class="admin-nav__link">
+            <a href="/admin/articles" class="admin-nav__link">
                 <svg data-feather="list"></svg>
                 Articles
             </a>
-            <a href="#" class="admin-nav__link">
+            <a href="/admin/diffusions" class="admin-nav__link">
                 <svg data-feather="radio"></svg>
                 Diffusions
             </a>
-            <a href="#" class="admin-nav__link">
+            <a href="/admin/categories" class="admin-nav__link">
                 <svg data-feather="tag"></svg>
                 Catégories
             </a>

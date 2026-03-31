@@ -47,37 +47,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
             
             if ($articleModel->create($data)) {
-                $message = '✅ Article créé avec succès !';
+                $message = 'Article créé avec succès !';
             }
         } catch (Exception $e) {
-            $error = '❌ Erreur lors de la création : ' . $e->getMessage();
+            $error = 'Erreur lors de la création : ' . $e->getMessage();
         }
     }
     
     if ($action === 'create_diffusion') {
         try {
             $diffusionModel->create($_POST['title'], $_POST['status'] ?? 'en_cours');
-            $message = '✅ Actualité créée avec succès !';
+            $message = 'Actualité créée avec succès !';
         } catch (Exception $e) {
-            $error = '❌ Erreur lors de la création : ' . $e->getMessage();
+            $error = 'Erreur lors de la création : ' . $e->getMessage();
         }
     }
     
     if ($action === 'delete_article') {
         try {
             $articleModel->delete($_POST['id']);
-            $message = '✅ Article supprimé avec succès !';
+            $message = 'Article supprimé avec succès !';
         } catch (Exception $e) {
-            $error = '❌ Erreur lors de la suppression : ' . $e->getMessage();
+            $error = 'Erreur lors de la suppression : ' . $e->getMessage();
         }
     }
     
     if ($action === 'update_diffusion_status') {
         try {
             $diffusionModel->updateStatus($_POST['id'], $_POST['status']);
-            $message = '✅ Statut mis à jour !';
+            $message = 'Statut mis à jour !';
         } catch (Exception $e) {
-            $error = '❌ Erreur : ' . $e->getMessage();
+            $error = 'Erreur : ' . $e->getMessage();
         }
     }
 }
@@ -442,7 +442,7 @@ $categories = $categoryModel->getAll();
                 <textarea id="content" name="content" required style="min-height: 300px;"></textarea>
             </div>
 
-            <button type="submit">✅ Créer l'article</button>
+            <button type="submit">Créer l'article</button>
         </form>
     </div>
 
@@ -471,7 +471,7 @@ $categories = $categoryModel->getAll();
                 </select>
             </div>
 
-            <button type="submit">✅ Créer l'actualité</button>
+            <button type="submit">Créer l'actualité</button>
         </form>
     </div>
         </form>

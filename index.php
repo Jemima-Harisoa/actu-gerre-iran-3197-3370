@@ -25,12 +25,6 @@ $page = $_GET['page'] ?? 'home';
 
 try {
     switch ($page) {
-        case 'admin-article-preview':
-            // Seul un admin peut voir un aperçu
-            if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1) {
-                header('Location: /login');
-                exit;
-            }
         case 'article':
             if (!isset($_GET['id'])) {
                 die('Article non spécifié');
@@ -64,10 +58,7 @@ try {
             
             // Définir le titre de la page
             $pageTitle = htmlspecialchars($article['title']) . ' - Chronique de Guerre Iran';
-            $isPreview = ($page === 'admin-article-preview'); // pour afficher la bannière dans la vue
-            if ($isPreview) {
-                $pageTitle = 'Aperçu : ' . $pageTitle;
-            }
+            
             include __DIR__ . '/views/article.php';
             break;
 
@@ -140,12 +131,12 @@ try {
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $articleId = $adminArticleController->store($_POST, $_FILES);
-        
+                $slug = generateSlug($_POST['title']);
                 if ($articleId) {
                     $action = $_POST['action'] ?? 'draft';
         
                     if ($action === 'publish') {
-                        header('Location: /?page=article&id=' . $articleId);
+                        header("Location: /{$articleId}/article/{$slug}");
                         exit;
                     } else {
                         // Brouillon → charger l'article pour l'aperçu
@@ -164,7 +155,159 @@ try {
         
             include __DIR__ . '/views/admin/article-form.php';
             break;
-                    
+        case 'admin-articles':
+            if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1) {
+                header('Location: /login'); exit;
+            }
+    
+            $successMessage = null;
+            $errorMessage   = null;
+    
+            // Traitement des actions POST
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $action    = $_POST['action'] ?? '';
+                $targetId  = (int)($_POST['id'] ?? 0);
+                $articleModel = new Article($pdo);
+    
+                switch ($action) {
+    
+                    case 'delete':
+                        if ($targetId && $articleModel->delete($targetId)) {
+                            $successMessage = 'Article supprimé.';
+                        } else {
+                            $errorMessage = 'Erreur lors de la suppression.';
+                        }
+                        break;
+    
+                    case 'toggle_publish':
+                        // Récupérer l'article pour savoir son état actuel
+                        $current = $articleModel->getById($targetId);
+                        if ($current) {
+                            $newPublishedAt = !empty($current['published_at']) ? null : date('Y-m-d H:i:s');
+                            $articleModel->update($targetId, array_merge($current, ['published_at' => $newPublishedAt]));
+                            $successMessage = !empty($current['published_at']) ? 'Article dépublié.' : 'Article publié.';
+                        }
+                        break;
+    
+                    case 'toggle_featured':
+                        $current = $articleModel->getById($targetId);
+                        if ($current) {
+                            $newFeatured = $current['is_featured'] ? 0 : 1;
+                            $articleModel->update($targetId, array_merge($current, ['is_featured' => $newFeatured]));
+                            $successMessage = $newFeatured ? 'Article mis à la une.' : 'Article retiré de la une.';
+                        }
+                        break;
+                }
+            }
+    
+            // Charger tous les articles pour la liste
+            $articleModel = new Article($pdo);
+            $articles     = $articleModel->getAll(100, 0);
+            $pageTitle    = 'Articles — Admin';
+    
+            include __DIR__ . '/views/admin/articles-list.php';
+            break;
+    // ── LISTE DES DIFFUSIONS ────────────────────────────────
+        case 'admin-diffusions':
+            if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1) {
+                header('Location: /login'); exit;
+            }
+    
+            $successMessage = null;
+            $errorMessage   = null;
+    
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $action   = $_POST['action'] ?? '';
+                $targetId = (int)($_POST['id'] ?? 0);
+    
+                switch ($action) {
+    
+                    case 'create':
+                        $title  = trim($_POST['title'] ?? '');
+                        $status = $_POST['status'] ?? 'en_cours';
+                        if ($title) {
+                            // Diffusion->create() existe déjà dans le model
+                            $diffModel = new Diffusion($pdo);
+                            $diffModel->create($title, $status);
+                            $successMessage = 'Diffusion ajoutée.';
+                        } else {
+                            $errorMessage = 'Le titre est requis.';
+                        }
+                        break;
+    
+                    case 'update_status':
+                        $status    = $_POST['status'] ?? 'en_cours';
+                        $diffModel = new Diffusion($pdo);
+                        $diffModel->updateStatus($targetId, $status);
+                        $successMessage = 'Statut mis à jour.';
+                        break;
+    
+                    case 'delete':
+                        $diffModel = new Diffusion($pdo);
+                        if ($targetId && $diffModel->delete($targetId)) {
+                            $successMessage = 'Diffusion supprimée.';
+                        } else {
+                            $errorMessage = 'Erreur lors de la suppression.';
+                        }
+                        break;
+                }
+            }
+    
+            $data       = $diffusionController->listAll();
+            $diffusions = $data['diffusions'];
+            $pageTitle  = 'Diffusions — Admin';
+    
+            include __DIR__ . '/views/admin/diffusions-list.php';
+            break;
+        // ── LISTE DES CATÉGORIES ────────────────────────────────
+        case 'admin-categories':
+            if (empty($_SESSION['user_id']) || $_SESSION['role_id'] !== 1) {
+                header('Location: /login'); exit;
+            }
+    
+            $successMessage = null;
+            $errorMessage   = null;
+    
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $action   = $_POST['action'] ?? '';
+                $targetId = (int)($_POST['id'] ?? 0);
+    
+                switch ($action) {
+    
+                    case 'create':
+                        $name = trim($_POST['name'] ?? '');
+                        $slug = trim($_POST['slug'] ?? '');
+                        if ($name && $slug) {
+                            // Normaliser le slug : minuscules, tirets
+                            $slug = strtolower(preg_replace('/[^a-z0-9-]/', '-', $slug));
+                            $categoryModel->create($name, $slug);
+                            $successMessage = 'Catégorie créée.';
+                        } else {
+                            $errorMessage = 'Nom et slug sont requis.';
+                        }
+                        break;
+    
+                    case 'delete':
+                        if ($targetId && $categoryModel->delete($targetId)) {
+                            $successMessage = 'Catégorie supprimée.';
+                        } else {
+                            $errorMessage = 'Erreur lors de la suppression.';
+                        }
+                        break;
+                }
+            }
+    
+            // Charger les catégories avec le nombre d'articles
+            $allCats = $categoryModel->getAll();
+            $categoriesAdmin = array_map(function($cat) use ($categoryModel) {
+                $cat['article_count'] = $categoryModel->getArticleCount($cat['id']);
+                return $cat;
+            }, $allCats);
+    
+            $pageTitle = 'Catégories — Admin';
+    
+            include __DIR__ . '/views/admin/categories-list.php';
+            break;            
         case 'home':
         default:
             $data = $articleController->index();
